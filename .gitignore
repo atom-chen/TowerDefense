@@ -74,3 +74,4 @@ Device-Release/
 /proj.android/project.properties
 *.properties
 /proj.android/libs/armeabi/libcocos2dcpp.so
+/TowerGame/proj.wp8-xaml
