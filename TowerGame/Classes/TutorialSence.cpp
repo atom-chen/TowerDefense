@@ -234,7 +234,7 @@ void TutorialSence::update(float dt)
 	DataModel *m = DataModel::getModel();
 	Vector<Projectile*> projectilesToDelete;
 
-	for each(Projectile *projectile in m->projectiles) 
+	for (Projectile *projectile : m->projectiles) 
 	{
 		Rect projectileRect = Rect(projectile->getPositionX() - (projectile->getContentSize().width / 2),
 			projectile->getPositionY() - (projectile->getContentSize().height / 2),
@@ -243,7 +243,7 @@ void TutorialSence::update(float dt)
 
 		Vector<Creep*> targetsToDelete;
 
-		for each(Creep *target in m->targets) 
+		for (Creep *target : m->targets) 
 		{
 			Rect targetRect = Rect(target->getPositionX() - (target->sprite->getContentSize().width / 2),
 				target->getPositionY() - (target->sprite->getContentSize().height / 2),
@@ -265,14 +265,14 @@ void TutorialSence::update(float dt)
 			}
 		}
 
-		for each(Creep *target in targetsToDelete)
+		for (Creep *target : targetsToDelete)
 		{
 			m->targets.eraseObject(target);
 			this->removeChild(target, true);
 		}		
 	}
 
-	for each(Projectile *projectile in projectilesToDelete)
+	for (Projectile *projectile : projectilesToDelete)
 	{
 		m->projectiles.eraseObject(projectile);
 		this->removeChild(projectile,true);
