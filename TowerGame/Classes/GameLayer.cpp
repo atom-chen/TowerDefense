@@ -114,7 +114,7 @@ void GameLayer::addTarget()
 	DataModel *m = DataModel::getModel();
 	Wave* wave = this->getCurrentWave();
 	if (wave->totalCreeps < 0) {
-		 return;
+		return;
 	}
 	wave->totalCreeps--;
 
@@ -151,11 +151,11 @@ Point GameLayer::tileCoordForPosition(Point position)
 
 bool GameLayer::canBuildOnTilePosition(Point pos)
 {
- 	Point towerLoc = this->tileCoordForPosition(pos);
+	Point towerLoc = this->tileCoordForPosition(pos);
 	int tileGid = this->background->getTileGIDAt(towerLoc);
 	Value props = this->tileMap->getPropertiesForGID(tileGid);
 	if(props.isNull()){
-	  return false;
+		return false;
 	}
 	ValueMap map = props.asValueMap();
 
@@ -176,7 +176,7 @@ bool GameLayer::canBuildOnTilePosition(Point pos)
 	return false;
 }
 
-void GameLayer::addTower(Point pos)
+void GameLayer::addTower(Point pos,String imageName)
 {
 	DataModel *m = DataModel::getModel();
 	Tower *target = NULL ;
@@ -189,11 +189,22 @@ void GameLayer::addTower(Point pos)
 	int type_int = map.at("buildable").asInt();
 	if (1 == type_int) 
 	{   
-		target = TowerDamage::towerDamage();
-		target->setPosition(ccp((towerLoc.x * 32) + 16, this->tileMap->getContentSize().height - (towerLoc.y * 32) - 16));
-		this->addChild(target,1);
-		target->setTag(1);
-		m->towers.pushBack(target);
+		CCLOG("Compare= %s",imageName.getCString());
+		if(imageName.compare("MachineGunTurret.png")==0){
+			target = TowerSpeed::towerSpeed();
+			target->setPosition(ccp((towerLoc.x * 32) + 16, this->tileMap->getContentSize().height - (towerLoc.y * 32) - 16));
+			this->addChild(target,1);
+			target->setTag(1);
+			m->towers.pushBack(target);
+		}else{
+			target = TowerDamage::towerDamage();
+			target->setPosition(ccp((towerLoc.x * 32) + 16, this->tileMap->getContentSize().height - (towerLoc.y * 32) - 16));
+			this->addChild(target,1);
+			target->setTag(1);
+			m->towers.pushBack(target);
+
+		}
+
 	}
 	else 
 	{
@@ -265,7 +276,7 @@ void GameLayer::update(float dt)
 	}
 
 	if(IsGameOver==true){
-	Director::getInstance()->replaceScene(TransitionFade::create(1,GameOverScene::create()));
+		Director::getInstance()->replaceScene(TransitionFade::create(1,GameOverScene::create()));
 	}
 }
 

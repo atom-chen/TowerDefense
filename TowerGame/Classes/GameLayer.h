@@ -17,7 +17,7 @@ public:
 	GameHUD* gameHUD;
 	void addWaypoint();
 	void addWaves();
-	void addTower(Point pos);
+	void addTower(Point pos,String imageName);
 	Point tileCoordForPosition(Point position);
 	bool canBuildOnTilePosition(Point pos);
 	virtual bool init();

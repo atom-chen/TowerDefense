@@ -24,12 +24,13 @@ bool GameHUD::init()
 	Vector<String*> images;
 	images.pushBack(StringMake("MachineGunTurret.png"));
 	images.pushBack(StringMake("MachineGunTurret.png"));
-	images.pushBack(StringMake("MachineGunTurret.png"));
-	images.pushBack(StringMake("MachineGunTurret.png"));
+	images.pushBack(StringMake("tower_damage.png"));
+	images.pushBack(StringMake("tower_damage.png"));
 	for (int i = 0; i < images.size(); ++i)
 	{
 		String* image = images.at(i);
 		auto *sprite = Sprite::create(image->getCString());
+		sprite->setName(image->getCString());
 		float offsetFraction = ((float)(i + 1)) / (images.size() + 1);
 		sprite->setPosition(ccp(winSize.width*offsetFraction, 35));
 		this->addChild(sprite);
@@ -92,6 +93,7 @@ bool GameHUD::onTouchBegan(Touch *touch, Event *event)
 			newSprite = Sprite::createWithTexture(sprite->getTexture()); //sprite;
 			newSprite->setPosition(sprite->getPosition());
 			selSprite = newSprite;
+			selSprite->setName(sprite->getName());
 			this->addChild(newSprite);
 		}
 	}
@@ -145,7 +147,7 @@ void GameHUD::onTouchEnded(Touch* touch, Event* event)
 		if (!backgroundRect.containsPoint(touchLocation) && m->_gameLayer->canBuildOnTilePosition(touchLocation))
 		{
 			Point touchLocationInGameLayer = m->_gameLayer->convertTouchToNodeSpace(touch);
-			m->_gameLayer->addTower(touchLocationInGameLayer);
+			m->_gameLayer->addTower(touchLocationInGameLayer,selSprite->getName());
 		}
 
 		this->removeChild(selSprite,true);
