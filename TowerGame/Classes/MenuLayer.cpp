@@ -1,5 +1,5 @@
 #include "MenuLayer.h"
-#include "GameScene.h"
+#include "LevelSelectScene.h"
 
 bool MenuLayer::init(){
 
@@ -17,5 +17,5 @@ bool MenuLayer::init(){
 }
 
 void MenuLayer::startGame(){
-    Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
+    Director::getInstance()->replaceScene(TransitionFade::create(1,LevelSelectScene::create()));
 }

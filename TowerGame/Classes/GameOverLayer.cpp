@@ -1,5 +1,5 @@
 #include "GameOverLayer.h"
-#include "GameScene.h"
+#include "LevelSelectScene.h"
 #include "StartScene.h"
 #include "SimpleAudioEngine.h"
 
@@ -19,7 +19,7 @@ bool GameOverLayer::init(){
 	this->addChild(background,-1);
 
 	//add goback button
-	auto startGameBtn = MenuItemImage::create("ui_start_normal.png","ui_start_pressed.png",CC_CALLBACK_0(GameOverLayer::goBack,this));
+	auto startGameBtn = MenuItemImage::create("ui_stage_intro_back.png","ui_stage_intro_back_pressed.png",CC_CALLBACK_0(GameOverLayer::goBack,this));
 	Menu* menu = Menu::create(startGameBtn, NULL);
 	menu->setPosition(visibleSize.width/2,visibleSize.height/2);
 	this->addChild(menu); 
@@ -29,6 +29,6 @@ bool GameOverLayer::init(){
 
 
 void GameOverLayer::goBack(){
-		Director::getInstance()->replaceScene(TransitionFade::create(1,StartScene::createScene()));
+		Director::getInstance()->replaceScene(TransitionFade::create(1,LevelSelectScene::create()));
 	
 }
