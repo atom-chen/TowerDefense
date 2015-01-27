@@ -1,6 +1,7 @@
 #include "Creep.h"
 #include "WayPoint.h"
 #include "DataModel.h"
+#include "GameOverScene.h"
 
 USING_NS_CC;
 
@@ -52,8 +53,12 @@ WayPoint* Creep::getNextWaypoint()
 	DataModel* m = DataModel::getModel();
 	int lastWaypoint = (int)m->waypoints.size();
 	this->curWaypoint++;
-	if (this->curWaypoint >= lastWaypoint)
+	//crrep reach  last port
+	if (this->curWaypoint >= lastWaypoint){
 		this->curWaypoint = lastWaypoint - 1;
+        //goto game over
+		GameLayer::IsGameOver=true;
+	}
 
 	WayPoint *waypoint = (WayPoint *)m->waypoints.at(curWaypoint);
 	return waypoint;

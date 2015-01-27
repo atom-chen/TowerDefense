@@ -1,13 +1,14 @@
 #include "GameLayer.h"
 #include "Tower.h"
 #include "DataModel.h"
-
+#include "GameOverScene.h"
 #include <Vector>
 #include <string>
 
 
 USING_NS_CC;
 
+bool GameLayer::IsGameOver=false;
 
 void GameLayer::FollowPath(Node* sender)
 {
@@ -256,6 +257,10 @@ void GameLayer::update(float dt)
 	{
 		m->projectiles.eraseObject(projectile);
 		this->removeChild(projectile,true);
+	}
+
+	if(IsGameOver==true){
+	Director::getInstance()->replaceScene(TransitionFade::create(1,GameOverScene::create()));
 	}
 }
 

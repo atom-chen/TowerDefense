@@ -14,9 +14,7 @@ public:
 	TMXLayer* background;
 	int currentLevel;
 	Point position;
-
 	GameHUD* gameHUD;
-
 	void addWaypoint();
 	void addWaves();
 	void addTower(Point pos);
@@ -31,4 +29,6 @@ public:
 	void addTarget();
 	Point boundLayerPos(Point newPos);
 	CREATE_FUNC(GameLayer);
+public:
+	static bool IsGameOver;
 };
