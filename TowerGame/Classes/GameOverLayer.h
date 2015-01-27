@@ -10,6 +10,7 @@ public:
 	virtual bool init();
 	CREATE_FUNC(GameOverLayer);
 	//void continueGame();
+	void goBack();
 private:
 	//TODO need add
 };
