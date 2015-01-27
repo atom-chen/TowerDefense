@@ -2,10 +2,20 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="15" tilewidth="32" tileheight="32" nextobjectid="13">
  <tileset firstgid="1" name="tmw_desert_spacing" tilewidth="32" tileheight="32" spacing="1" margin="1">
   <image source="tmw_desert_spacing.png" width="265" height="199"/>
+  <tile id="29">
+   <properties>
+    <property name="buildable" value="1"/>
+   </properties>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="buildable" value="1"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="Background" width="25" height="15">
   <data encoding="base64" compression="zlib">
-   eJyTZ2BgkKcxlqMxHkg7uIjA1LBDCQ8m1Q5c7iRkB7H+lCdgFgirALEqEepw+ZMYO3SAWJfGdpCD0e2gR3zQI10NVP4YimUJPTAAsZ8pbA==
+   eJyTZ2BgkKcxlqMxHkg7uIjA1LBDCQ8m1Q5c7iRkB7H+lCdgFgirALEqEepw+ZMYO3SAWJfGdpCD0e2gR3zQI10NVP6gdj5XpzGmdXkLwwAznipE
   </data>
  </layer>
  <objectgroup name="Objects">
