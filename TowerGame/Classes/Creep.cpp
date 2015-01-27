@@ -52,7 +52,7 @@ WayPoint* Creep::getNextWaypoint()
 	DataModel* m = DataModel::getModel();
 	int lastWaypoint = (int)m->waypoints.size();
 	this->curWaypoint++;
-	if (this->curWaypoint > lastWaypoint)
+	if (this->curWaypoint >= lastWaypoint)
 		this->curWaypoint = lastWaypoint - 1;
 
 	WayPoint *waypoint = (WayPoint *)m->waypoints.at(curWaypoint);

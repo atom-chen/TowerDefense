@@ -269,33 +269,3 @@ Point GameLayer::boundLayerPos(Point newPos)
 	retval.y = MAX(tileMap->getContentSize().height + winSize.height, retval.y);
 	return retval;
 }
-
-//-(void)handlePanFrom:(UIPanGestureRecognizer *)recognizer{
-//
-//	if (recognizer.state == UIGestureRecognizerStateBegan) {
-//		//Not used, but included for now
-//		CGPoint touchLocation = [recognizer locationInView : recognizer.view];
-//		touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
-//		touchLocation = [self convertToNodeSpace : touchLocation];
-//
-//	} elseif(recognizer.state == UIGestureRecognizerStateChanged) {
-//		// We have recognized a change in the gesture on the screen.
-//		CGPoint translation = [recognizer translationInView : recognizer.view];
-//		translation = ccp(translation.x, -translation.y);
-//		CGPoint newPos = ccpAdd(self.position, translation);
-//		self.position = [self boundLayerPos : newPos];
-//		[recognizer setTranslation : CGPointZero inView : recognizer.view];
-//
-//	} elseif(recognizer.state == UIGestureRecognizerStateEnded) {
-//		// We have finished the gesture - run a CCMoveTo action based on the velocity of the swipe
-//		float scrollDuration = 0.2;
-//		CGPoint velocity = [recognizer velocityInView : recognizer.view];
-//		CGPoint newPos = ccpAdd(self.position, ccpMult(ccp(velocity.x, velocity.y *-1), scrollDuration));
-//		newPos = [self boundLayerPos : newPos];
-//
-//		[self stopAllActions];
-//		CCMoveTo *moveTo = [CCMoveTo actionWithDuration : scrollDuration position : newPos];
-//		[self runAction : [CCEaseOut actionWithAction : moveTo rate : 1]];
-//
-//	}
-//}
