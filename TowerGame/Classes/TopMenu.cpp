@@ -3,25 +3,31 @@
 #include "SimpleAudioEngine.h"
 #include "Chinese.h"
 #include "GameData.h"
+#include "TopMenu.h"
+#include "GameLayer.h"
+#include "GameState.h"
 
 
-TopMenu* TopMenu::create(GameLayer* layer){
-	TopMenu* ret = new TopMenu();
-	if(ret && ret->init(layer)){
-		ret->autorelease();
-		return ret;
-	}
-	CC_SAFE_DELETE(ret);
-	return nullptr;
+TopMenu* TopMenu::_instance = nullptr;
+TopMenu::TopMenu(){
+	this->init();
 }
 
-bool TopMenu::init(GameLayer* layer){
+TopMenu* TopMenu::getInstance(){
+	if(_instance == 0){
+		_instance = new TopMenu();
+	}
+	return _instance;
+}
+
+bool TopMenu::init(){
 	if(!Node::init()){
 		return false;
 	}
-	LoadTopMenu();
+	LoadTopMenu();	
 	return true;
 }
+
 void TopMenu::LoadTopMenu(){
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	//add lifeValue label

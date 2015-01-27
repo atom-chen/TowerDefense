@@ -33,10 +33,10 @@ bool GameLayer::init()
 	}
 
 	//add topMenu to GameLayer
-	TopMenu* TopMenu = TopMenu::create(this);
+	TopMenu* TopMenu = TopMenu::create();
 	this->addChild(TopMenu,2);
 
-	this->tileMap = TMXTiledMap::create("TileMap.tmx");
+	this->tileMap = TMXTiledMap::create("map_level_1.tmx");
 	this->background = tileMap->layerNamed("Background");
 	this->background->setAnchorPoint(ccp(0, 0));
 	this->addChild(tileMap, 0);
