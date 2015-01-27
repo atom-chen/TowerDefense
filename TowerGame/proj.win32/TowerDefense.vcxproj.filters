@@ -75,6 +75,12 @@
     <ClCompile Include="..\Classes\WayPoint.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameState.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -138,6 +144,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\WayPoint.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameState.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
