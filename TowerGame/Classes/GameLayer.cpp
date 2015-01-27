@@ -1,35 +1,15 @@
-#include "TutorialSence.h"
+#include "GameLayer.h"
 #include "Tower.h"
 #include "DataModel.h"
+
 #include <Vector>
 #include <string>
 
 
 USING_NS_CC;
 
-Scene* TutorialSence::createScene()
-{
-	// 'scene' is an autorelease object
-	auto scene = Scene::create();
 
-	// 'layer' is an autorelease object
-	auto layer = TutorialSence::create();
-
-	auto myGameHUD = GameHUD::shareHUD();
-
-	// add layer as a child to scene
-	scene->addChild(layer,1);
-	
-	scene->addChild(myGameHUD, 1);
-
-	DataModel* m = DataModel::getModel();
-	m->_gameLayer = layer;
-	m->_gameHUDLayer = myGameHUD;
-
-	return scene;
-}
-
-void TutorialSence::FollowPath(Node* sender)
+void GameLayer::FollowPath(Node* sender)
 {
 	Creep *creep = (Creep *)sender;
 
@@ -37,12 +17,12 @@ void TutorialSence::FollowPath(Node* sender)
 
 	int moveDuration = creep->moveDuration;
 	auto actionMove = MoveTo::create(moveDuration,waypoint->getPosition());
-	auto actionMoveDone = CallFuncN::create(this,callfuncN_selector(TutorialSence::FollowPath));
+	auto actionMoveDone = CallFuncN::create(this,callfuncN_selector(GameLayer::FollowPath));
 	creep->stopAllActions();
 	creep->runAction(Sequence::create(actionMove,actionMoveDone,NULL));
 }
 
-bool TutorialSence::init()
+bool GameLayer::init()
 {
 	if (!Layer::init()) 
 	{
@@ -58,14 +38,14 @@ bool TutorialSence::init()
 	this->addWaves();
 
 	this->scheduleUpdate();
-	this->schedule(schedule_selector(TutorialSence::gameLogic), 1.0f);
+	this->schedule(schedule_selector(GameLayer::gameLogic), 1.0f);
 	this->currentLevel = 0;
 	this->position = ccp(-228, -122);
 
 	return true;
 }
 
-void TutorialSence::addWaves()
+void GameLayer::addWaves()
 {
 	DataModel *m = DataModel::getModel();
 
@@ -78,7 +58,7 @@ void TutorialSence::addWaves()
 	wave = NULL;
 }
 
-Wave* TutorialSence::getCurrentWave()
+Wave* GameLayer::getCurrentWave()
 {
 	DataModel *m = DataModel::getModel();
 	Wave * wave = (Wave *)m->waves.at(this->currentLevel);
@@ -86,7 +66,7 @@ Wave* TutorialSence::getCurrentWave()
 	return wave;
 }
 
-Wave* TutorialSence::getNextWave()
+Wave* GameLayer::getNextWave()
 {
 	DataModel *m = DataModel::getModel();
 
@@ -100,7 +80,7 @@ Wave* TutorialSence::getNextWave()
 	return wave;
 }
 
-void TutorialSence::addWaypoint()
+void GameLayer::addWaypoint()
 {
 	DataModel *m = DataModel::getModel();
 	auto *objects = this->tileMap->objectGroupNamed("Objects");
@@ -122,7 +102,7 @@ void TutorialSence::addWaypoint()
 	wp = NULL;
 }
 
-void TutorialSence::addTarget()
+void GameLayer::addTarget()
 {
 
 	DataModel *m = DataModel::getModel();
@@ -150,20 +130,20 @@ void TutorialSence::addTarget()
 
 	int moveDuration = target->moveDuration;
 	auto actionMove = CCMoveTo::create(moveDuration, waypoint->getPosition());
-	auto actionMoveDone = CallFuncN::create(this, callfuncN_selector(TutorialSence::FollowPath));
+	auto actionMoveDone = CallFuncN::create(this, callfuncN_selector(GameLayer::FollowPath));
 	target->runAction(CCSequence::create(actionMove, actionMoveDone, NULL));
 	target->tag = 1;
 	m->targets.pushBack(target);
 }
 
-Point TutorialSence::tileCoordForPosition(Point position)
+Point GameLayer::tileCoordForPosition(Point position)
 {
 	int x = position.x / this->tileMap->getTileSize().width;
 	int y = ((this->tileMap->getMapSize().height * this->tileMap->getTileSize().height) - position.y) / this->tileMap->getTileSize().height;
 	return ccp(x, y);
 }
 
-bool TutorialSence::canBuildOnTilePosition(Point pos)
+bool GameLayer::canBuildOnTilePosition(Point pos)
 {
  	Point towerLoc = this->tileCoordForPosition(pos);
 	int tileGid = this->background->getTileGIDAt(towerLoc);
@@ -190,7 +170,7 @@ bool TutorialSence::canBuildOnTilePosition(Point pos)
 	return false;
 }
 
-void TutorialSence::addTower(Point pos)
+void GameLayer::addTower(Point pos)
 {
 	DataModel *m = DataModel::getModel();
 	Tower *target = NULL ;
@@ -215,7 +195,7 @@ void TutorialSence::addTower(Point pos)
 	}
 }
 
-void TutorialSence::gameLogic(float dt)
+void GameLayer::gameLogic(float dt)
 {
 	DataModel *m = DataModel::getModel();
 	Wave * wave = this->getCurrentWave();
@@ -229,7 +209,7 @@ void TutorialSence::gameLogic(float dt)
 	}
 }
 
-void TutorialSence::update(float dt)
+void GameLayer::update(float dt)
 {
 	DataModel *m = DataModel::getModel();
 	Vector<Projectile*> projectilesToDelete;
@@ -279,7 +259,7 @@ void TutorialSence::update(float dt)
 	}
 }
 
-Point TutorialSence::boundLayerPos(Point newPos)
+Point GameLayer::boundLayerPos(Point newPos)
 {
 	Size winSize = CCDirector::getInstance()->getWinSize();
 	Point retval = newPos;

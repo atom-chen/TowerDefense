@@ -27,16 +27,17 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setAnimationInterval(1.0 / 60);
 
 	#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	eglView->setFrameSize(480, 800);
-#endif
+	eglView->setDesignResolutionSize(864, 640, kResolutionExactFit);
+    #endif
+	#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	if(visibleSize.height/visibleSize.width > 800/480){
-		eglView->setDesignResolutionSize(480, 800, ResolutionPolicy::EXACT_FIT);
+	if(visibleSize.width/visibleSize.height > 800/480){
+		eglView->setDesignResolutionSize(800, 480, ResolutionPolicy::EXACT_FIT);
 	}
 	else{
-		eglView->setDesignResolutionSize(480, 800, ResolutionPolicy::NO_BORDER);
+		eglView->setDesignResolutionSize(800, 480, ResolutionPolicy::NO_BORDER);
 	}
-
+	 #endif
     // create a scene. it's an autorelease object
     auto scene = StartScene::createScene();
 

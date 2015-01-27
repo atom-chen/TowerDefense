@@ -5,15 +5,15 @@
 #include "Tower.h"
 #include "projectile.h"
 #include "GameHUD .h"
-#include "TutorialSence.h"
+#include "GameLayer.h"
 
 USING_NS_CC;
 
 class DataModel 
 {
 public:
-	TutorialSence* _gameLayer;
-	GameHUD*       _gameHUDLayer;
+	GameLayer* _gameLayer;
+	GameHUD* _gameHUDLayer;
 	Vector<WayPoint*> waypoints;
 	Vector<Creep*> targets;
 	Vector<Wave*> waves;

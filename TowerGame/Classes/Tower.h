@@ -1,7 +1,7 @@
 #pragma once
 #include "cocos2d.h"
 #include "Creep.h"
-#include "projectile.h"
+#include "Projectile.h"
 
 class Tower: public Sprite 
 {

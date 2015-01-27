@@ -7,7 +7,7 @@
 
 USING_NS_CC;
 
-class TutorialSence: public Layer
+class GameLayer: public Layer
 {
 public:
 	TMXTiledMap* tileMap;
@@ -17,7 +17,6 @@ public:
 
 	GameHUD* gameHUD;
 
-	static Scene* createScene();
 	void addWaypoint();
 	void addWaves();
 	void addTower(Point pos);
@@ -31,5 +30,5 @@ public:
 	void gameLogic(float dt);
 	void addTarget();
 	Point boundLayerPos(Point newPos);
-	CREATE_FUNC(TutorialSence);
+	CREATE_FUNC(GameLayer);
 };

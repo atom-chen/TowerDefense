@@ -33,9 +33,6 @@
     <ClCompile Include="..\Classes\Tower.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\TutorialSence.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Wave.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -46,6 +43,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\StartScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameLayer.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,9 +74,6 @@
     <ClInclude Include="..\Classes\Tower.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\TutorialSence.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Wave.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -84,6 +84,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MenuLayer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameLayer.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
