@@ -2,6 +2,7 @@
 #include "Tower.h"
 #include "DataModel.h"
 #include "GameOverScene.h"
+#include "TopMenu.h"
 #include <Vector>
 #include <string>
 
@@ -29,6 +30,10 @@ bool GameLayer::init()
 	{
 		return false;
 	}
+
+	//add topMenu to GameLayer
+	TopMenu* TopMenu = TopMenu::create(this);
+	this->addChild(TopMenu,2);
 
 	this->tileMap = TMXTiledMap::create("TileMap.tmx");
 	this->background = tileMap->layerNamed("Background");
@@ -183,8 +188,8 @@ void GameLayer::addTower(Point pos)
 
 	int type_int = map.at("buildable").asInt();
 	if (1 == type_int) 
-	{
-		target = MachineGunTower::tower();
+	{   
+		target = TowerDamage::towerDamage();
 		target->setPosition(ccp((towerLoc.x * 32) + 16, this->tileMap->getContentSize().height - (towerLoc.y * 32) - 16));
 		this->addChild(target,1);
 		target->setTag(1);

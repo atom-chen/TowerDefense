@@ -35,8 +35,7 @@ void LevelSelectLayer::goBack(){
 	Director::getInstance()->replaceScene(TransitionFade::create(1,StartScene::createScene()));
 }
 
-void LevelSelectLayer::startGame(){
-//select logic   
-Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
-
+void LevelSelectLayer::startGame(){ 
+	//add level logic
+   Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
 }
