@@ -27,7 +27,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setAnimationInterval(1.0 / 60);
 
 	#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	eglView->setDesignResolutionSize(864, 640, kResolutionExactFit);
+	eglView->setDesignResolutionSize(800, 480, kResolutionExactFit);
     #endif
 	#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	Size visibleSize = Director::getInstance()->getVisibleSize();

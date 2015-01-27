@@ -154,6 +154,7 @@ bool GameLayer::canBuildOnTilePosition(Point pos)
 {
 	Point towerLoc = this->tileCoordForPosition(pos);
 	int tileGid = this->background->getTileGIDAt(towerLoc);
+	CCLOG("tileGid %d",tileGid);
 	Value props = this->tileMap->getPropertiesForGID(tileGid);
 	if(props.isNull()){
 		return false;
@@ -188,9 +189,9 @@ void GameLayer::addTower(Point pos,String imageName)
 	ValueMap map = props.asValueMap();
 
 	int type_int = map.at("buildable").asInt();
+
 	if (1 == type_int) 
 	{   
-		CCLOG("Compare= %s",imageName.getCString());
 		if(imageName.compare("MachineGunTurret.png")==0){
 			target = TowerSpeed::towerSpeed();
 			target->setPosition(ccp((towerLoc.x * 32) + 16, this->tileMap->getContentSize().height - (towerLoc.y * 32) - 16));
