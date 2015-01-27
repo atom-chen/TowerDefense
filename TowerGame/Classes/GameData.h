@@ -6,7 +6,7 @@ public:
 	static GAMEDATA* getInstance();
 
 	void setGameGold(int gold);
-	int getGameScore();
+	int getGameGold();
 
 	void setSoundState(bool state);
 	bool getSoundState();

@@ -23,7 +23,7 @@ void GAMEDATA::setGameGold(int gold){
 	gameGold = gold;
 }
 
-int GAMEDATA::getGameScore(){
+int GAMEDATA::getGameGold(){
 	return gameGold;
 }
 

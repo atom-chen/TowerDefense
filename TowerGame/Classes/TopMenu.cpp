@@ -2,6 +2,7 @@
 #include "GameLayer.h"
 #include "SimpleAudioEngine.h"
 #include "Chinese.h"
+#include "GameData.h"
 
 
 TopMenu* TopMenu::create(GameLayer* layer){
@@ -38,5 +39,12 @@ void TopMenu::LoadTopMenu(){
 		);
 	waveValue->setPosition(visibleSize.width/2,visibleSize.height/2+50);
 	this->addChild(waveValue);
+
+		//add player god value
+	playerGold = Label::create(cocos2d::String::createWithFormat("%d",GAMEDATA::getInstance()->getGameGold())->_string,
+		"Verdana-Bold",24
+		);
+	playerGold->setPosition(visibleSize.width/2,visibleSize.height/2+100);
+	this->addChild(playerGold);
 
 }

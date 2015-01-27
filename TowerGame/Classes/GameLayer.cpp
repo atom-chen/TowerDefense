@@ -5,6 +5,7 @@
 #include "TopMenu.h"
 #include <Vector>
 #include <string>
+#include "GameData.h"
 
 
 USING_NS_CC;
@@ -257,6 +258,8 @@ void GameLayer::update(float dt)
 				if (creep->curHp <= 0) 
 				{
 					targetsToDelete.pushBack(creep);
+					//kill one creep get gold
+					GAMEDATA::getInstance()->setGameGold(GAMEDATA::getInstance()->getGameGold()+10);
 				}
 				break;
 			}

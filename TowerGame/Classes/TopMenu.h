@@ -15,6 +15,7 @@ public:
 private:
 	Label* lifeValue;
 	Label* waveValue;
+	Label* playerGold;
 private:
 	void LoadTopMenu();
 
