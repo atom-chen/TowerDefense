@@ -141,7 +141,9 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\Creep.cpp" />
     <ClCompile Include="..\Classes\DataModel.cpp" />
     <ClCompile Include="..\Classes\GameHUD .cpp" />
+    <ClCompile Include="..\Classes\MenuLayer.cpp" />
     <ClCompile Include="..\Classes\projectile.cpp" />
+    <ClCompile Include="..\Classes\StartScene.cpp" />
     <ClCompile Include="..\Classes\Tower.cpp" />
     <ClCompile Include="..\Classes\TutorialSence.cpp" />
     <ClCompile Include="..\Classes\Wave.cpp" />
@@ -153,7 +155,9 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\Creep.h" />
     <ClInclude Include="..\Classes\DataModel.h" />
     <ClInclude Include="..\Classes\GameHUD .h" />
+    <ClInclude Include="..\Classes\MenuLayer.h" />
     <ClInclude Include="..\Classes\projectile.h" />
+    <ClInclude Include="..\Classes\StartScene.h" />
     <ClInclude Include="..\Classes\Tower.h" />
     <ClInclude Include="..\Classes\TutorialSence.h" />
     <ClInclude Include="..\Classes\Wave.h" />

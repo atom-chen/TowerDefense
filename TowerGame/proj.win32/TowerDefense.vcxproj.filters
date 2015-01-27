@@ -42,6 +42,12 @@
     <ClCompile Include="..\Classes\WayPoint.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\MenuLayer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\StartScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -72,6 +78,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\WayPoint.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\StartScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MenuLayer.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

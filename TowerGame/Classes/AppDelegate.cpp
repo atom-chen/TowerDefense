@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "TutorialSence.h"
+#include "StartScene.h"
 
 USING_NS_CC;
 
@@ -26,10 +26,19 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
 
-	eglView->setDesignResolutionSize(864, 640, kResolutionExactFit);
+	#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	eglView->setFrameSize(480, 800);
+#endif
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	if(visibleSize.height/visibleSize.width > 800/480){
+		eglView->setDesignResolutionSize(480, 800, ResolutionPolicy::EXACT_FIT);
+	}
+	else{
+		eglView->setDesignResolutionSize(480, 800, ResolutionPolicy::NO_BORDER);
+	}
 
     // create a scene. it's an autorelease object
-    auto scene = TutorialSence::createScene();
+    auto scene = StartScene::createScene();
 
 
     // run
