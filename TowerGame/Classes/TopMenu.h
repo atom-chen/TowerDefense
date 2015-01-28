@@ -10,13 +10,13 @@ public:
 	static TopMenu* getInstance();
 	virtual bool init();
 	CREATE_FUNC(TopMenu);
-	void updatePlayerGold(int gameGold);
 	void pauseGame();
+	void refresh();
+
 private:
 	static TopMenu* _instance;
 	TopMenu();
 	void LoadTopMenu();
-private:
 	Label* lifeValue;
 	Label* waveValue;
 	Label* playerGold;
