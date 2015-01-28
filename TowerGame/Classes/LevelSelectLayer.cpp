@@ -16,10 +16,19 @@ bool LevelSelectLayer::init(){
 	background->setPosition(visibleSize.width/2,visibleSize.height/2);
 	this->addChild(background,-1);
 
-	auto level = MenuItemImage::create("Level_1.png","Level_1.png",CC_CALLBACK_0(LevelSelectLayer::startGame,this));
-	Menu* level_1 = Menu::create(level, NULL);
-	level_1->setPosition(visibleSize.width/2,visibleSize.height/2);
-	this->addChild(level_1); 
+
+	Vector<MenuItem*> menuItemVector;
+	for(int i=0; i<2; i++){
+		std::string strName ="Level_"+cocos2d::String::createWithFormat("%d",(i+1))->_string+".png";
+		auto level = MenuItemImage::create(strName,strName,CC_CALLBACK_1(LevelSelectLayer::startGame,this));
+		  level->setTag(i+1);
+          menuItemVector.pushBack(level);
+	}
+	auto levelMenu = Menu::createWithArray(menuItemVector);
+	levelMenu->alignItemsHorizontallyWithPadding (100);
+	levelMenu->setPosition(visibleSize.width/2,visibleSize.height/2);
+	
+	this->addChild(levelMenu); 
 
 
 	//add goback button
@@ -35,7 +44,10 @@ void LevelSelectLayer::goBack(){
 	Director::getInstance()->replaceScene(TransitionFade::create(1,StartScene::createScene()));
 }
 
-void LevelSelectLayer::startGame(){ 
+void LevelSelectLayer::startGame(Ref* pSender){ 
 	//add level logic
-   Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
+    auto button = (Sprite *)pSender;
+    std::string strName ="map_level_"+cocos2d::String::createWithFormat("%d",button->getTag())->_string+".tmx";
+	UserDefault::getInstance()->setStringForKey("nextLevelFile", strName);
+	Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
 }

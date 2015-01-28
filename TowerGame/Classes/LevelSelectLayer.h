@@ -10,7 +10,7 @@ public:
 	virtual bool init();
 	CREATE_FUNC(LevelSelectLayer);
 	void goBack();
-	void startGame();
+	void startGame(Ref* pSender);
 private:
 	//TODO need add
 };
