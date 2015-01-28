@@ -14,7 +14,7 @@ bool GameOverLayer::init(){
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 
 	//set background image
-	Sprite* background =Sprite::create("background.jpg");
+	Sprite* background =Sprite::create("background.png");
 	background->setPosition(visibleSize.width/2,visibleSize.height/2);
 	this->addChild(background,-1);
 
