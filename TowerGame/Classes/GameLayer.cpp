@@ -12,19 +12,6 @@
 USING_NS_CC;
 
 
-void GameLayer::FollowPath(Node* sender)
-{
-	Creep *creep = (Creep *)sender;
-
-	WayPoint * waypoint = creep->getNextWaypoint();
-
-	int moveDuration = creep->moveDuration;
-	auto actionMove = MoveTo::create(moveDuration,waypoint->getPosition());
-	auto actionMoveDone = CallFuncN::create(this,callfuncN_selector(GameLayer::FollowPath));
-	creep->stopAllActions();
-	creep->runAction(Sequence::create(actionMove,actionMoveDone,NULL));
-}
-
 bool GameLayer::init()
 {
 	if (!Layer::init()) 
@@ -32,31 +19,42 @@ bool GameLayer::init()
 		return false;
 	}
 
+	DataModel::getModel()->clean();
+	GAMESTATE::getInstance()->reset();
 	//add topMenu to GameLayer
-
 	this->tileMap = TMXTiledMap::create(UserDefault::getInstance()->getStringForKey("nextLevelFile"));
 	this->background = tileMap->layerNamed("Background");
 	this->background->setAnchorPoint(ccp(0, 0));
 	this->addChild(tileMap, 0);
 
-	GAMEDATA::getInstance()->initLevelInfo(GAMEDATA::getInstance()->getCurrentLevel());
-	TopMenu* TopMenu = TopMenu::getInstance();
-	this->addChild(TopMenu,2);
+	//GAMEDATA::getInstance()->initLevelInfo(GAMEDATA::getInstance()->getCurrentLevel());
+	/*TopMenu* TopMenu = TopMenu::getInstance();
+	this->addChild(TopMenu);*/
+	
+	//add waypoint 
 	this->addWaypoint();
 	this->addWaves();
-
 	this->scheduleUpdate();
 	this->schedule(schedule_selector(GameLayer::gameLogic), 1.0f);
 	this->currentLevel = 0;
 	this->position = ccp(-228, -122);
-
 	return true;
+}
+
+void GameLayer::FollowPath(Node* sender)
+{
+	Creep *creep = (Creep *)sender;
+	WayPoint * waypoint = creep->getNextWaypoint();
+	int moveDuration = creep->moveDuration;
+	auto actionMove = MoveTo::create(moveDuration,waypoint->getPosition());
+	auto actionMoveDone = CallFuncN::create(this,callfuncN_selector(GameLayer::FollowPath));
+	creep->stopAllActions();
+	creep->runAction(Sequence::create(actionMove,actionMoveDone,NULL));
 }
 
 void GameLayer::addWaves()
 {
 	DataModel *m = DataModel::getModel();
-
 	Wave *wave = NULL;
 	wave = Wave::create()->initWithCreep(FastRedCreep::creep(), 0.3, 50);
 	m->waves.pushBack(wave);
@@ -70,7 +68,6 @@ Wave* GameLayer::getCurrentWave()
 {
 	DataModel *m = DataModel::getModel();
 	Wave * wave = (Wave *)m->waves.at(this->currentLevel);
-
 	return wave;
 }
 
@@ -96,6 +93,7 @@ void GameLayer::addWaypoint()
 	std::string stringWithFormat = "Waypoint";
 	int wayPointCounter = 0;
 	ValueMap wayPoint;
+	wayPoint.clear();
 	wayPoint = objects->objectNamed(stringWithFormat + std::to_string(wayPointCounter));
 	while (wayPoint.begin()!= wayPoint.end())
 	{
@@ -112,7 +110,6 @@ void GameLayer::addWaypoint()
 
 void GameLayer::addTarget()
 {
-
 	DataModel *m = DataModel::getModel();
 	Wave* wave = this->getCurrentWave();
 	if (wave->totalCreeps < 0) {

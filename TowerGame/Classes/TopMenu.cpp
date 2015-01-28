@@ -9,6 +9,7 @@
 
 
 TopMenu* TopMenu::_instance = nullptr;
+
 TopMenu::TopMenu(){
 	this->init();
 }
@@ -56,5 +57,5 @@ void TopMenu::LoadTopMenu(){
 void TopMenu::refresh(){
 	lifeValue->setString(ChineseWord("lifevalue") + cocos2d::String::createWithFormat(":%d",GAMEDATA::getInstance()->getLifeValue())->_string);
 	waveValue->setString(ChineseWord("waves") + cocos2d::String::createWithFormat(":%d",1)->_string+"/"+cocos2d::String::createWithFormat("%d",10)->_string);
-	playerGold->setString(cocos2d::String::createWithFormat(":%d",GAMEDATA::getInstance()->getPlayerGold())->_string);
+	playerGold->setString(ChineseWord("gold")+cocos2d::String::createWithFormat(":%d",GAMEDATA::getInstance()->getPlayerGold())->_string);
 }
