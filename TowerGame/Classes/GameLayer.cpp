@@ -6,6 +6,7 @@
 #include <Vector>
 #include <string>
 #include "GameData.h"
+#include "GameState.h"
 
 
 USING_NS_CC;
@@ -38,9 +39,8 @@ bool GameLayer::init()
 	this->background->setAnchorPoint(ccp(0, 0));
 	this->addChild(tileMap, 0);
 
-	GAMEDATA::getInstance()->initLifeValue(GAMEDATA::getInstance()->getCurrentLevel());
-	CCLOG("KKKKKKKKKKKKKKKKKKK");
-	TopMenu* TopMenu = TopMenu::create();
+	GAMEDATA::getInstance()->initLevelInfo(GAMEDATA::getInstance()->getCurrentLevel());
+	TopMenu* TopMenu = TopMenu::getInstance();
 	this->addChild(TopMenu,2);
 	this->addWaypoint();
 	this->addWaves();
@@ -280,9 +280,9 @@ void GameLayer::update(float dt)
 		this->removeChild(projectile,true);
 	}
 
-	//if(GameState==true){
-	//	Director::getInstance()->replaceScene(TransitionFade::create(1,GameOverScene::create()));
-	//}
+	if(GAMESTATE::getInstance()->getGameOver()==true){
+		Director::getInstance()->replaceScene(TransitionFade::create(1,GameOverScene::create()));
+	}
 }
 
 Point GameLayer::boundLayerPos(Point newPos)

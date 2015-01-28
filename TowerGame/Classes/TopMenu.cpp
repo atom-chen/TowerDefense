@@ -32,7 +32,7 @@ void TopMenu::LoadTopMenu(){
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	//add lifeValue label
 	lifeValue = Label::create(
-		ChineseWord("lifevalue") + cocos2d::String::createWithFormat("%d",GAMEDATA::getInstance()->getLifeValue())->_string,
+		ChineseWord("lifevalue") + cocos2d::String::createWithFormat(":%d",GAMEDATA::getInstance()->getLifeValue())->_string,
 		"Verdana-Bold",24
 		);
 	lifeValue->setPosition(visibleSize.width/2,visibleSize.height/2);
@@ -40,16 +40,21 @@ void TopMenu::LoadTopMenu(){
 
 	//add wave value
 	waveValue = Label::create(
-		ChineseWord("lifevalue") + cocos2d::String::createWithFormat("%d",1)->_string+"/"+cocos2d::String::createWithFormat("%d",10)->_string,
+		ChineseWord("waves") + cocos2d::String::createWithFormat(":%d",1)->_string+"/"+cocos2d::String::createWithFormat("%d",10)->_string,
 		"Verdana-Bold",24
 		);
 	waveValue->setPosition(visibleSize.width/2,visibleSize.height/2+50);
 	this->addChild(waveValue);
 
 		//add player god value
-	playerGold = Label::create(cocos2d::String::createWithFormat("%d",GAMEDATA::getInstance()->getPlayerGold())->_string,
+	playerGold = Label::create(ChineseWord("gold")+cocos2d::String::createWithFormat(":%d",GAMEDATA::getInstance()->getPlayerGold())->_string,
 		"Verdana-Bold",24
 		);
 	playerGold->setPosition(visibleSize.width/2,visibleSize.height/2+100);
 	this->addChild(playerGold);
+}
+void TopMenu::refresh(){
+	lifeValue->setString(ChineseWord("lifevalue") + cocos2d::String::createWithFormat(":%d",GAMEDATA::getInstance()->getLifeValue())->_string);
+	waveValue->setString(ChineseWord("waves") + cocos2d::String::createWithFormat(":%d",1)->_string+"/"+cocos2d::String::createWithFormat("%d",10)->_string);
+	playerGold->setString(cocos2d::String::createWithFormat(":%d",GAMEDATA::getInstance()->getPlayerGold())->_string);
 }

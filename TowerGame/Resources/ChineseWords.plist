@@ -6,6 +6,11 @@
   <key>lifevalue</key>
   <string>生命值</string>
 
+   <key>waves</key>
+  <string>波数</string>
+
+<key>gold</key>
+  <string>金币</string>
 </dict>
 
 </array>

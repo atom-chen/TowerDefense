@@ -99,3 +99,8 @@ void GAMEDATA::seturrentLevel(int lev){
 int GAMEDATA::getCurrentLevel(){
 	return Level;
 }
+
+void GAMEDATA::initLevelInfo(int Level){
+	initPlayerGold(Level);
+	initLifeValue(Level);
+}

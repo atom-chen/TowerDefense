@@ -4,6 +4,7 @@
 #include "GameOverScene.h"
 #include "GameState.h"
 #include "GameData.h"
+#include "TopMenu.h"
 
 USING_NS_CC;
 
@@ -58,8 +59,9 @@ WayPoint* Creep::getNextWaypoint()
 	//crrep reach  last port
 	if (this->curWaypoint >= lastWaypoint){
 		this->curWaypoint = lastWaypoint - 1;
-		if(GAMEDATA::getInstance()->getLifeValue()-1>0){
+		if(GAMEDATA::getInstance()->getLifeValue()>1){
 			GAMEDATA::getInstance()->setLifeValue(GAMEDATA::getInstance()->getLifeValue()-1);
+			TopMenu::getInstance()->refresh();
 		}else{
 			GAMESTATE::getInstance()->setGameOver(true);
 		}

@@ -10,10 +10,9 @@ public:
 	void setMusicState(bool state);
 	bool getMusicState();
 
-	void initLifeValue(int Level);
-	void initPlayerGold(int level);
+	void initLevelInfo(int level);
 
-	//life value
+		//life value
 	void setLifeValue(int value);
 	int getLifeValue();
 
@@ -32,6 +31,9 @@ private:
 	int playerGold;
 	int lifeValue;
 	int Level;
+	void initLifeValue(int Level);
+	void initPlayerGold(int level);
+
 };
 
 #endif
