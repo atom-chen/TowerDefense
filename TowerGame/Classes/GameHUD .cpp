@@ -36,7 +36,7 @@ bool GameHUD::init()
 		this->addChild(sprite);
 		movableSprites.pushBack(sprite);
 	}
-
+	selsected =false;
 	return true;
 }
 
@@ -71,6 +71,9 @@ void GameHUD::onEnter()
 
 bool GameHUD::onTouchBegan(Touch *touch, Event *event)
 {
+	if(!background->getBoundingBox().containsPoint(touch->getLocation())){
+	    return false; 
+	}
 	Point touchLocation = this->convertToWorldSpace(this->convertTouchToNodeSpace(touch));
 
 	Sprite * newSprite = NULL;
@@ -96,8 +99,7 @@ bool GameHUD::onTouchBegan(Touch *touch, Event *event)
 			selSprite->setName(sprite->getName());
 			this->addChild(newSprite);
 		}
-	}
-		
+	}	
 	return true;
 }
 
@@ -134,6 +136,7 @@ void GameHUD::onTouchMoved(Touch* touch,Event* event)
 
 void GameHUD::onTouchEnded(Touch* touch, Event* event)
 {
+	
 	Point touchLocation = this->convertTouchToNodeSpace(touch);
 	DataModel *m = DataModel::getModel();
 

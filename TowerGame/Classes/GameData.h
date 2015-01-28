@@ -5,8 +5,11 @@ class GAMEDATA{
 public:
 	static GAMEDATA* getInstance();
 
+
+	//play gold
 	void setGameGold(int gold);
 	int getGameGold();
+
 
 	void setSoundState(bool state);
 	bool getSoundState();

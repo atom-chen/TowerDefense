@@ -7,6 +7,7 @@ bool GameScene::init(){
 		return false;
 	}
 	auto layer=GameLayer::create();
+	layer->setTouchEnabled(false);
 	this->addChild(layer);
     auto myGameHUD = GameHUD::shareHUD();
 	this->addChild(myGameHUD, 1);
