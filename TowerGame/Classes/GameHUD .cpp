@@ -36,7 +36,6 @@ bool GameHUD::init()
 		this->addChild(sprite);
 		movableSprites.pushBack(sprite);
 	}
-	selsected =false;
 	return true;
 }
 

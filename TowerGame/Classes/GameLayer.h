@@ -29,6 +29,4 @@ public:
 	void addTarget();
 	Point boundLayerPos(Point newPos);
 	CREATE_FUNC(GameLayer);
-public:
-	static bool IsGameOver;
 };

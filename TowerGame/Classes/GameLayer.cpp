@@ -10,7 +10,6 @@
 
 USING_NS_CC;
 
-bool GameLayer::IsGameOver=false;
 
 void GameLayer::FollowPath(Node* sender)
 {
@@ -33,14 +32,16 @@ bool GameLayer::init()
 	}
 
 	//add topMenu to GameLayer
-	TopMenu* TopMenu = TopMenu::create();
-	this->addChild(TopMenu,2);
-	CCLOG("NAME= %s",UserDefault::getInstance()->getStringForKey("nextLevelFile"));
+
 	this->tileMap = TMXTiledMap::create(UserDefault::getInstance()->getStringForKey("nextLevelFile"));
 	this->background = tileMap->layerNamed("Background");
 	this->background->setAnchorPoint(ccp(0, 0));
 	this->addChild(tileMap, 0);
 
+	GAMEDATA::getInstance()->initLifeValue(GAMEDATA::getInstance()->getCurrentLevel());
+	CCLOG("KKKKKKKKKKKKKKKKKKK");
+	TopMenu* TopMenu = TopMenu::create();
+	this->addChild(TopMenu,2);
 	this->addWaypoint();
 	this->addWaves();
 
@@ -260,7 +261,7 @@ void GameLayer::update(float dt)
 				{
 					targetsToDelete.pushBack(creep);
 					//kill one creep get gold
-					GAMEDATA::getInstance()->setGameGold(GAMEDATA::getInstance()->getGameGold()+10);
+					GAMEDATA::getInstance()->setPlayerGold(GAMEDATA::getInstance()->getPlayerGold()+10);
 				}
 				break;
 			}
@@ -279,9 +280,9 @@ void GameLayer::update(float dt)
 		this->removeChild(projectile,true);
 	}
 
-	if(IsGameOver==true){
-		Director::getInstance()->replaceScene(TransitionFade::create(1,GameOverScene::create()));
-	}
+	//if(GameState==true){
+	//	Director::getInstance()->replaceScene(TransitionFade::create(1,GameOverScene::create()));
+	//}
 }
 
 Point GameLayer::boundLayerPos(Point newPos)

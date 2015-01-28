@@ -2,6 +2,8 @@
 #include "WayPoint.h"
 #include "DataModel.h"
 #include "GameOverScene.h"
+#include "GameState.h"
+#include "GameData.h"
 
 USING_NS_CC;
 
@@ -56,8 +58,11 @@ WayPoint* Creep::getNextWaypoint()
 	//crrep reach  last port
 	if (this->curWaypoint >= lastWaypoint){
 		this->curWaypoint = lastWaypoint - 1;
-        //goto game over
-		GameLayer::IsGameOver=true;
+		if(GAMEDATA::getInstance()->getLifeValue()-1>0){
+			GAMEDATA::getInstance()->setLifeValue(GAMEDATA::getInstance()->getLifeValue()-1);
+		}else{
+			GAMESTATE::getInstance()->setGameOver(true);
+		}
 	}
 
 	WayPoint *waypoint = (WayPoint *)m->waypoints.at(curWaypoint);

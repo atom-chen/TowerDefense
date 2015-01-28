@@ -5,6 +5,7 @@ class GAMESTATE{
 public:
 	static GAMESTATE* getInstance();
 	void reset();
+	void checkGameOver();
 	void setGamePause(bool pause);
 	bool getGamePause();
 	void setGameOver(bool over);

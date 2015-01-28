@@ -2,6 +2,7 @@
 #include "cocos2d.h"
 #include "StartScene.h"
 #include "GameScene.h"
+#include "GameData.h"
 
 using namespace cocos2d;
 
@@ -49,5 +50,6 @@ void LevelSelectLayer::startGame(Ref* pSender){
     auto button = (Sprite *)pSender;
     std::string strName ="map_level_"+cocos2d::String::createWithFormat("%d",button->getTag())->_string+".tmx";
 	UserDefault::getInstance()->setStringForKey("nextLevelFile", strName);
+	GAMEDATA::getInstance()->seturrentLevel(button->getTag()-1);
 	Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
 }

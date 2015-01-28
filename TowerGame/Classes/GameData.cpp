@@ -9,7 +9,7 @@ GAMEDATA::GAMEDATA(){
 }
 
 void GAMEDATA::init(){
-	gameGold = 0;
+
 }
 
 GAMEDATA* GAMEDATA::getInstance(){
@@ -17,14 +17,6 @@ GAMEDATA* GAMEDATA::getInstance(){
 		_instance = new GAMEDATA();
 	}
 	return _instance;
-}
-
-void GAMEDATA::setGameGold(int gold){
-	gameGold = gold;
-}
-
-int GAMEDATA::getGameGold(){
-	return gameGold;
 }
 
 void GAMEDATA::setSoundState(bool state) {
@@ -41,4 +33,69 @@ void GAMEDATA::setMusicState(bool state) {
 
 bool GAMEDATA::getMusicState() {
 	return UserDefault::getInstance()->getBoolForKey("musicState",true);
+}
+
+//return current level life value
+void GAMEDATA::initLifeValue(int level){
+  static const int Value[10][2] =
+	{
+		{0, 5},
+		{1, 9},
+		{2, 8},
+		{3, 7},
+		{4, 6},
+		{5, 5},
+		{6, 4},
+		{7, 3},
+		{8, 2},
+		{9, 1},
+	};
+	if(level>9 || level<0){
+		lifeValue= 0;
+	}
+	lifeValue=Value[level][1];
+}
+
+int GAMEDATA::getLifeValue(){
+	return lifeValue;
+}
+void GAMEDATA::setLifeValue(int value){
+	lifeValue=value;
+}
+
+//return current level life value
+void GAMEDATA::initPlayerGold(int level){
+	static const int Gold[10][2] =
+	{
+		{0, 100},
+		{1, 200},
+		{2, 300},
+		{3, 400},
+		{4, 500},
+		{5, 600},
+		{6, 700},
+		{7, 800},
+		{8, 900},
+		{9, 1000},
+	};
+	if(level>9 || level<0){
+		playerGold=0;
+	}
+	playerGold=Gold[level][1];
+}
+
+int GAMEDATA::getPlayerGold(){
+	return playerGold;
+}
+
+void GAMEDATA::setPlayerGold(int gold){
+	playerGold=gold;
+}
+
+void GAMEDATA::seturrentLevel(int lev){
+	Level =lev;
+}
+
+int GAMEDATA::getCurrentLevel(){
+	return Level;
 }

@@ -32,7 +32,7 @@ void TopMenu::LoadTopMenu(){
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	//add lifeValue label
 	lifeValue = Label::create(
-		ChineseWord("lifevalue") + cocos2d::String::createWithFormat("%d",10)->_string,
+		ChineseWord("lifevalue") + cocos2d::String::createWithFormat("%d",GAMEDATA::getInstance()->getLifeValue())->_string,
 		"Verdana-Bold",24
 		);
 	lifeValue->setPosition(visibleSize.width/2,visibleSize.height/2);
@@ -47,10 +47,9 @@ void TopMenu::LoadTopMenu(){
 	this->addChild(waveValue);
 
 		//add player god value
-	playerGold = Label::create(cocos2d::String::createWithFormat("%d",GAMEDATA::getInstance()->getGameGold())->_string,
+	playerGold = Label::create(cocos2d::String::createWithFormat("%d",GAMEDATA::getInstance()->getPlayerGold())->_string,
 		"Verdana-Bold",24
 		);
 	playerGold->setPosition(visibleSize.width/2,visibleSize.height/2+100);
 	this->addChild(playerGold);
-
 }
