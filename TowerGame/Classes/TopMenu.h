@@ -9,17 +9,13 @@ class TopMenu : public Node {
 public:
 	static TopMenu* getInstance();
 	virtual bool init();
-	CREATE_FUNC(TopMenu);
 	void pauseGame();
 	void refresh();
-
+	void update(float dt);
 private:
-	static TopMenu* _instance;
-	TopMenu();
 	void LoadTopMenu();
 	Label* lifeValue;
 	Label* waveValue;
 	Label* playerGold;
-
 };
 #endif

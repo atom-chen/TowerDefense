@@ -8,22 +8,21 @@
 #include "GameState.h"
 
 
-TopMenu* TopMenu::_instance = nullptr;
-TopMenu::TopMenu(){
-	this->init();
-}
-
 TopMenu* TopMenu::getInstance(){
-	if(_instance == 0){
-		_instance = new TopMenu();
+	TopMenu* ret = new TopMenu();
+	if(ret && ret->init()){
+		ret->autorelease();
+		return ret;
 	}
-	return _instance;
+	CC_SAFE_DELETE(ret);
+	return nullptr;
 }
 
 bool TopMenu::init(){
 	if(!Node::init()){
 		return false;
 	}
+	scheduleUpdate();
 	LoadTopMenu();	
 	return true;
 }
@@ -46,7 +45,7 @@ void TopMenu::LoadTopMenu(){
 	waveValue->setPosition(visibleSize.width/2,visibleSize.height/2+50);
 	this->addChild(waveValue);
 
-		//add player god value
+	//add player god value
 	playerGold = Label::create(ChineseWord("gold")+cocos2d::String::createWithFormat(":%d",GAMEDATA::getInstance()->getPlayerGold())->_string,
 		"Verdana-Bold",24
 		);
@@ -57,4 +56,11 @@ void TopMenu::refresh(){
 	lifeValue->setString(ChineseWord("lifevalue") + cocos2d::String::createWithFormat(":%d",GAMEDATA::getInstance()->getLifeValue())->_string);
 	waveValue->setString(ChineseWord("waves") + cocos2d::String::createWithFormat(":%d",1)->_string+"/"+cocos2d::String::createWithFormat("%d",10)->_string);
 	playerGold->setString(cocos2d::String::createWithFormat(":%d",GAMEDATA::getInstance()->getPlayerGold())->_string);
+}
+
+void TopMenu::update(float dt){
+	if(GAMESTATE::getInstance()->getRefreshTopmenu()){
+		refresh();
+		GAMESTATE::getInstance()->setRefreshTopmenu(false);
+	}
 }

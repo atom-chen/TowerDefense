@@ -12,19 +12,6 @@
 USING_NS_CC;
 
 
-void GameLayer::FollowPath(Node* sender)
-{
-	Creep *creep = (Creep *)sender;
-
-	WayPoint * waypoint = creep->getNextWaypoint();
-
-	int moveDuration = creep->moveDuration;
-	auto actionMove = MoveTo::create(moveDuration,waypoint->getPosition());
-	auto actionMoveDone = CallFuncN::create(this,callfuncN_selector(GameLayer::FollowPath));
-	creep->stopAllActions();
-	creep->runAction(Sequence::create(actionMove,actionMoveDone,NULL));
-}
-
 bool GameLayer::init()
 {
 	if (!Layer::init()) 
@@ -40,8 +27,12 @@ bool GameLayer::init()
 	this->addChild(tileMap, 0);
 
 	GAMEDATA::getInstance()->initLevelInfo(GAMEDATA::getInstance()->getCurrentLevel());
-	TopMenu* TopMenu = TopMenu::getInstance();
+	GAMESTATE::getInstance()->reset();
+
+	auto TopMenu = TopMenu::getInstance();
 	this->addChild(TopMenu,2);
+
+	//add waypoint and waves
 	this->addWaypoint();
 	this->addWaves();
 
@@ -53,10 +44,21 @@ bool GameLayer::init()
 	return true;
 }
 
+void GameLayer::FollowPath(Node* sender)
+{
+	Creep *creep = (Creep *)sender;
+	WayPoint * waypoint = creep->getNextWaypoint();
+	int moveDuration = creep->moveDuration;
+	auto actionMove = MoveTo::create(moveDuration,waypoint->getPosition());
+	auto actionMoveDone = CallFuncN::create(this,callfuncN_selector(GameLayer::FollowPath));
+	creep->stopAllActions();
+	creep->runAction(Sequence::create(actionMove,actionMoveDone,NULL));
+}
+
+
 void GameLayer::addWaves()
 {
 	DataModel *m = DataModel::getModel();
-
 	Wave *wave = NULL;
 	wave = Wave::create()->initWithCreep(FastRedCreep::creep(), 0.3, 50);
 	m->waves.pushBack(wave);
@@ -77,9 +79,7 @@ Wave* GameLayer::getCurrentWave()
 Wave* GameLayer::getNextWave()
 {
 	DataModel *m = DataModel::getModel();
-
 	this->currentLevel++;
-
 	if (this->currentLevel > 1)
 		this->currentLevel = 0;
 
