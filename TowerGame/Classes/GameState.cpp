@@ -47,3 +47,11 @@ void GAMESTATE::setRefreshTopmenu(bool refresh){
 bool GAMESTATE::getRefreshTopmenu(){
 	return refreshTopmenu;
 }
+
+bool GAMESTATE::getLevelResult(){
+    return levelResult;
+}
+
+void GAMESTATE::setLevelResult(bool pass){
+	levelResult=pass;
+}

@@ -4,6 +4,7 @@
 #include "SimpleAudioEngine.h"
 #include "GameScene.h"
 #include "GameData.h"
+#include "GameState.h"
 
 
 
@@ -24,8 +25,11 @@ bool GameOverLayer::init(){
 	auto goback = MenuItemImage::create("go_back.png","go_back.png",CC_CALLBACK_0(GameOverLayer::goBack,this));
 	auto next = MenuItemImage::create("next_level.png","next_level.png",CC_CALLBACK_0(GameOverLayer::nextLevel,this));
 	auto retry = MenuItemImage::create("retry.png","retry.png",CC_CALLBACK_0(GameOverLayer::retry,this));
+	if(!GAMESTATE::getInstance()->getLevelResult()){
+		next->setVisible(false);
+	}
 	Menu* menu = Menu::create(goback,retry,next,NULL);
-	menu->alignItemsHorizontallyWithPadding(100);
+	menu->alignItemsHorizontallyWithPadding(50);
 	menu->setPosition(visibleSize.width/2,visibleSize.height/2);
 	this->addChild(menu); 
 

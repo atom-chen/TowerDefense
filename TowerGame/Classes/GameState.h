@@ -12,6 +12,8 @@ public:
 	bool getGameOver();
 	void setRefreshTopmenu(bool refresh);
 	bool getRefreshTopmenu();
+    void setLevelResult(bool pass);
+	bool getLevelResult();
 
 private:
 	GAMESTATE();
@@ -20,5 +22,6 @@ private:
 	bool gamePause;
 	bool gameOver;
 	bool refreshTopmenu;
+	bool levelResult;
 };
 #endif

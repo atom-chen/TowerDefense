@@ -63,6 +63,7 @@ WayPoint* Creep::getNextWaypoint()
 			GAMESTATE::getInstance()->setRefreshTopmenu(true);
 		}else{
 			GAMESTATE::getInstance()->setGameOver(true);
+			GAMESTATE::getInstance()->setLevelResult(false);
 		}
 	}
 
