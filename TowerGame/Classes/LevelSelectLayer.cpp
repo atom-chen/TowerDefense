@@ -22,7 +22,7 @@ bool LevelSelectLayer::init(){
 	for(int i=0; i<2; i++){
 		std::string strName ="level_"+cocos2d::String::createWithFormat("%d",(i+1))->_string+".png";
 		auto level = MenuItemImage::create(strName,strName,CC_CALLBACK_1(LevelSelectLayer::startGame,this));
-		  level->setTag(i+1);
+		  level->setTag(i);
           menuItemVector.pushBack(level);
 	}
 	auto levelMenu = Menu::createWithArray(menuItemVector);
@@ -48,8 +48,6 @@ void LevelSelectLayer::goBack(){
 void LevelSelectLayer::startGame(Ref* pSender){ 
 	//add level logic
     auto button = (Sprite *)pSender;
-    std::string strName ="map_level_"+cocos2d::String::createWithFormat("%d",button->getTag())->_string+".tmx";
-	UserDefault::getInstance()->setStringForKey("nextLevelFile", strName);
-	GAMEDATA::getInstance()->seturrentLevel(button->getTag()-1);
+	GAMEDATA::getInstance()->setCurrentLevel(button->getTag());
 	Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
 }

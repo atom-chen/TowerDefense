@@ -92,7 +92,7 @@ void GAMEDATA::setPlayerGold(int gold){
 	playerGold=gold;
 }
 
-void GAMEDATA::seturrentLevel(int lev){
+void GAMEDATA::setCurrentLevel(int lev){
 	Level =lev;
 }
 

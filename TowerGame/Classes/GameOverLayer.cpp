@@ -2,6 +2,8 @@
 #include "LevelSelectScene.h"
 #include "StartScene.h"
 #include "SimpleAudioEngine.h"
+#include "GameScene.h"
+#include "GameData.h"
 
 
 
@@ -19,16 +21,31 @@ bool GameOverLayer::init(){
 	this->addChild(background,-1);
 
 	//add goback button
-	auto startGameBtn = MenuItemImage::create("ui_stage_intro_back.png","ui_stage_intro_back_pressed.png",CC_CALLBACK_0(GameOverLayer::goBack,this));
-	Menu* menu = Menu::create(startGameBtn, NULL);
+	auto goback = MenuItemImage::create("go_back.png","go_back.png",CC_CALLBACK_0(GameOverLayer::goBack,this));
+	auto next = MenuItemImage::create("next_level.png","next_level.png",CC_CALLBACK_0(GameOverLayer::nextLevel,this));
+	auto retry = MenuItemImage::create("retry.png","retry.png",CC_CALLBACK_0(GameOverLayer::retry,this));
+	Menu* menu = Menu::create(goback,retry,next,NULL);
+	menu->alignItemsHorizontallyWithPadding(100);
 	menu->setPosition(visibleSize.width/2,visibleSize.height/2);
 	this->addChild(menu); 
 
 	return true;
 }
 
-
+//goto levle select scene
 void GameOverLayer::goBack(){
+	 
 		Director::getInstance()->replaceScene(TransitionFade::create(1,LevelSelectScene::create()));
 	
+}
+
+//goto next level
+void GameOverLayer::nextLevel(){
+	GAMEDATA::getInstance()->setCurrentLevel(GAMEDATA::getInstance()->getCurrentLevel()+1);
+	Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
+}
+
+//try this current again
+void GameOverLayer::retry(){
+	Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
 }

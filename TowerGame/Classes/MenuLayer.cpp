@@ -9,7 +9,7 @@ bool MenuLayer::init(){
 		return false;
 	}
 	//backgroud music
-	Audio::getInstance()->playBGM("sound/bgm.mp3");
+	//Audio::getInstance()->playBGM("sound/bgm.mp3");
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	//set background image

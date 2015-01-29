@@ -32,7 +32,7 @@ public:
 
 	//level number
 	int getCurrentLevel();
-	void seturrentLevel(int level);
+	void setCurrentLevel(int level);
 
 private:
 	GAMEDATA();

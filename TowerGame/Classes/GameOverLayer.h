@@ -9,9 +9,8 @@ class GameOverLayer : public Layer{
 public:
 	virtual bool init();
 	CREATE_FUNC(GameOverLayer);
-	//void continueGame();
+	void retry();
+    void nextLevel();
 	void goBack();
-private:
-	//TODO need add
 };
 #endif

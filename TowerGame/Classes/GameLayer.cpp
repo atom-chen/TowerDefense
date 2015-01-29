@@ -22,8 +22,8 @@ bool GameLayer::init()
 	auto myGameHUD = GameHUD::create(this);
 	this->addChild(myGameHUD, 1);
     GAMEDATA::getInstance()->clean();
-	
-	this->tileMap = TMXTiledMap::create(UserDefault::getInstance()->getStringForKey("nextLevelFile"));
+	  std::string strName ="map_level_"+cocos2d::String::createWithFormat("%d",GAMEDATA::getInstance()->getCurrentLevel())->_string+".tmx";
+	this->tileMap = TMXTiledMap::create(strName);
 	this->background = tileMap->layerNamed("Background");
 	this->background->setAnchorPoint(ccp(0, 0));
 	this->addChild(tileMap, 0);
