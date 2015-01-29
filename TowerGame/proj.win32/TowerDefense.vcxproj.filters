@@ -140,9 +140,6 @@
     <ClInclude Include="..\Classes\Tower.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\TowerDamage.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\TowerSpeed.h">
       <Filter>src</Filter>
     </ClInclude>
