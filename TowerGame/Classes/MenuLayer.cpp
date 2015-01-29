@@ -1,12 +1,16 @@
 #include "MenuLayer.h"
 #include "LevelSelectScene.h"
 #include "BlinkTitle.h"
+#include "Audio.h"
 
 bool MenuLayer::init(){
 
 	if(!Layer::init()){
 		return false;
 	}
+	//backgroud music
+	Audio::getInstance()->playBGM("sound/bgm.mp3");
+
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	//set background image
 	Sprite* background =Sprite::create("background.png");
