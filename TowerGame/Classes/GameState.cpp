@@ -55,3 +55,15 @@ bool GAMESTATE::getLevelResult(){
 void GAMESTATE::setLevelResult(bool pass){
 	levelResult=pass;
 }
+
+void GAMESTATE::setRefreshGameHUD(bool refresh){
+   refreshGameHUD = refresh;
+}
+bool GAMESTATE::getRefreshGameHUD(){
+    return refreshGameHUD;
+}
+
+void GAMESTATE::setNeedRefesh(bool refresh){
+	refreshGameHUD=refresh;
+	refreshTopmenu=refresh;
+}

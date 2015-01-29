@@ -14,7 +14,9 @@ public:
 	bool getRefreshTopmenu();
     void setLevelResult(bool pass);
 	bool getLevelResult();
-
+	void setRefreshGameHUD(bool refresh);
+	bool getRefreshGameHUD();
+	void setNeedRefesh(bool refresh);
 private:
 	GAMESTATE();
 	void init();
@@ -22,6 +24,7 @@ private:
 	bool gamePause;
 	bool gameOver;
 	bool refreshTopmenu;
+	bool refreshGameHUD;
 	bool levelResult;
 };
 #endif

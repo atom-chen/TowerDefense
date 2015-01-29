@@ -209,7 +209,7 @@ void GameLayer::addTower(Point pos,String imageName)
 		}
 		auto money=GAMEDATA::getInstance()->getPriceByImageName(imageName);
 		GAMEDATA::getInstance()->setPlayerGold( GAMEDATA::getInstance()->getPlayerGold()-money);
-		GAMESTATE::getInstance()->setRefreshTopmenu(true);
+		GAMESTATE::getInstance()->setNeedRefesh(true);
 	}
 	else 
 	{
@@ -264,7 +264,7 @@ void GameLayer::update(float dt)
 					targetsToDelete.pushBack(creep);
 					//kill one creep get gold
 					GAMEDATA::getInstance()->setPlayerGold(GAMEDATA::getInstance()->getPlayerGold()+10);
-					GAMESTATE::getInstance()->setRefreshTopmenu(true);
+					GAMESTATE::getInstance()->setNeedRefesh(true);
 				}
 				break;
 			}

@@ -1,5 +1,6 @@
 #include "GameHUD.h"
 #include "GameData.h"
+#include "GameState.h"
 
 
 GameHUD* GameHUD::create(GameLayer* layer){
@@ -35,13 +36,12 @@ bool GameHUD::init(GameLayer* layer)
 	for (int i = 0; i < images.size(); ++i)
 	{
 		String* image = images.at(i);
-		Sprite *sprite; 
+		Sprite *sprite = Sprite::create(image->getCString()); 
 		if(GAMEDATA::getInstance()->getPriceByImageName(image->getCString())>GAMEDATA::getInstance()->getPlayerGold()){
-		  sprite = Sprite::create("lock.png");
-		  sprite->setTag(999);
+			sprite->setTag(1);
+			sprite->setOpacity(255);
 		}else{
-		  sprite = Sprite::create(image->getCString());
-		   sprite->setTag(0);
+			sprite->setTag(0);
 		}
 		sprite->setName(image->getCString());
 		background->setAnchorPoint(ccp(0, 0));
@@ -50,6 +50,7 @@ bool GameHUD::init(GameLayer* layer)
 		this->addChild(sprite);
 		movableSprites.pushBack(sprite);
 	}
+	scheduleUpdate();
 	return true;
 }
 
@@ -68,13 +69,13 @@ void GameHUD::onEnter()
 	auto dispatcher = Director::getInstance()->getEventDispatcher();
 
 	dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-	
+
 }
 
 bool GameHUD::onTouchBegan(Touch *touch, Event *event)
 {
 	if(!background->getBoundingBox().containsPoint(touch->getLocation())){
-	    return false; 
+		return false; 
 	}
 	Point touchLocation = this->convertToWorldSpace(this->convertTouchToNodeSpace(touch));
 
@@ -88,7 +89,7 @@ bool GameHUD::onTouchBegan(Touch *touch, Event *event)
 		float yMax = pos_rect.getMaxY();
 		if (pos_rect.containsPoint(touchLocation))
 		{
-			if(sprite->getTag()==999){
+			if(sprite->getTag()==1){
 				return false; 
 			}
 			selSpriteRange = Sprite::create("range.png");
@@ -138,14 +139,14 @@ void GameHUD::onTouchMoved(Touch* touch,Event* event)
 
 void GameHUD::onTouchEnded(Touch* touch, Event* event)
 {
-	
+
 	Point touchLocation = this->convertTouchToNodeSpace(touch);
 	if (selSprite) 
 	{
 		Rect backgroundRect = Rect(background->getPositionX(),
 			background->getPositionY(),
 			background->getContentSize().width,
-		 	background->getContentSize().height);
+			background->getContentSize().height);
 
 		if (!backgroundRect.containsPoint(touchLocation) && m_layer->canBuildOnTilePosition(touchLocation))
 		{
@@ -157,6 +158,20 @@ void GameHUD::onTouchEnded(Touch* touch, Event* event)
 		selSprite = NULL;
 		this->removeChild(selSpriteRange,true);
 		selSpriteRange = NULL;
+	}
+}
+
+void GameHUD::update(float dt){
+	if(GAMESTATE::getInstance()->getRefreshGameHUD()){
+		GAMESTATE::getInstance()->setRefreshGameHUD(false);
+		for(Sprite* sprite : this->movableSprites){
+			if(GAMEDATA::getInstance()->getPriceByImageName(sprite->getName())>GAMEDATA::getInstance()->getPlayerGold()){
+				sprite->setTag(1);
+				sprite->setOpacity(125);
+			}else{
+				sprite->setTag(0);
+			}
+		}
 	}
 }
 
