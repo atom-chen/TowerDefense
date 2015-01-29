@@ -1,7 +1,6 @@
 #include "GameHUD .h"
 #include "DataModel.h"
 
-GameHUD* GameHUD::_sharHUD;
 
 bool GameHUD::init()
 {
@@ -39,15 +38,6 @@ bool GameHUD::init()
 	return true;
 }
 
-GameHUD* GameHUD::shareHUD()
-{
-	if (_sharHUD == NULL)
-	{
-		_sharHUD = GameHUD::create();
-	}
-
-	return _sharHUD;
-}
 
 void GameHUD::onEnter()
 {
@@ -63,8 +53,6 @@ void GameHUD::onEnter()
 	auto dispatcher = Director::getInstance()->getEventDispatcher();
 
 	dispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-	//dispatcher->addEventListenerWithFixedPriority(listener, 0);
-
 	
 }
 

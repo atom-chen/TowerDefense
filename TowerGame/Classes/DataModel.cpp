@@ -17,5 +17,6 @@ void DataModel::clean(){
 	waves.clear();
 	towers.clear();
 	projectiles.clear();
-
+	_gameHUDLayer=nullptr;
+    _gameLayer=nullptr;
 }

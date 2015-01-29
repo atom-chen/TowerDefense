@@ -19,8 +19,14 @@ bool GameLayer::init()
 		return false;
 	}
 
-	//add topMenu to GameLayer
-
+	//add HUD and init DataModle
+	auto myGameHUD = GameHUD::create();
+	this->addChild(myGameHUD, 1);
+	DataModel* m = DataModel::getModel();
+	m->clean();
+	m->_gameLayer = this;
+	m->_gameHUDLayer = myGameHUD;
+	
 	this->tileMap = TMXTiledMap::create(UserDefault::getInstance()->getStringForKey("nextLevelFile"));
 	this->background = tileMap->layerNamed("Background");
 	this->background->setAnchorPoint(ccp(0, 0));
@@ -28,7 +34,7 @@ bool GameLayer::init()
 
 	GAMEDATA::getInstance()->initLevelInfo(GAMEDATA::getInstance()->getCurrentLevel());
 	GAMESTATE::getInstance()->reset();
-
+	//add topMenu to GameLayer
 	auto TopMenu = TopMenu::getInstance();
 	this->addChild(TopMenu,2);
 
