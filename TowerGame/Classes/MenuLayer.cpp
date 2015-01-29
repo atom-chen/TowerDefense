@@ -18,9 +18,9 @@ bool MenuLayer::init(){
 	this->addChild(background,-1);
 	//add start button
 
-	BlinkTitle* title = BlinkTitle::create("start_game.png");;
+	/*BlinkTitle* title = BlinkTitle::create("start_game.png");;
 	title->setPosition(visibleSize.width/2, 100);
-	this->addChild(title); 
+	this->addChild(title); */
 
 	auto startGameBtn = MenuItemImage::create("start_game.png","start_game.png",CC_CALLBACK_0(MenuLayer::startGame,this));
 	Menu* menu = Menu::create(startGameBtn, NULL);

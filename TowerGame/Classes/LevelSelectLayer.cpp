@@ -33,7 +33,7 @@ bool LevelSelectLayer::init(){
 
 
 	//add goback button
-	auto goBackBtn = MenuItemImage::create("ui_stage_intro_back.png","ui_stage_intro_back_pressed.png",CC_CALLBACK_0(LevelSelectLayer::goBack,this));
+	auto goBackBtn = MenuItemImage::create("go_back.png","go_back.png",CC_CALLBACK_0(LevelSelectLayer::goBack,this));
 	Menu* bakcMenu = Menu::create(goBackBtn, NULL);
 	bakcMenu->setPosition(visibleSize.width/2-200,visibleSize.height/2-200);
 	this->addChild(bakcMenu); 

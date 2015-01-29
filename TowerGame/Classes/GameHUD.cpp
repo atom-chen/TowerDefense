@@ -39,9 +39,10 @@ bool GameHUD::init(GameLayer* layer)
 		Sprite *sprite = Sprite::create(image->getCString()); 
 		if(GAMEDATA::getInstance()->getPriceByImageName(image->getCString())>GAMEDATA::getInstance()->getPlayerGold()){
 			sprite->setTag(1);
-			sprite->setOpacity(255);
+			sprite->setOpacity(100);
 		}else{
 			sprite->setTag(0);
+			sprite->setOpacity(255);
 		}
 		sprite->setName(image->getCString());
 		background->setAnchorPoint(ccp(0, 0));
@@ -167,9 +168,10 @@ void GameHUD::update(float dt){
 		for(Sprite* sprite : this->movableSprites){
 			if(GAMEDATA::getInstance()->getPriceByImageName(sprite->getName())>GAMEDATA::getInstance()->getPlayerGold()){
 				sprite->setTag(1);
-				sprite->setOpacity(125);
+				sprite->setOpacity(100);
 			}else{
 				sprite->setTag(0);
+				sprite->setOpacity(255);
 			}
 		}
 	}
