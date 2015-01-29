@@ -19,6 +19,7 @@ public:
 	Vector<Wave*> waves;
 	Vector<Tower*> towers;
 	Vector<Projectile*> projectiles;
+	void clean();
 	static DataModel* getModel();
 private:
 	DataModel(){};

@@ -151,7 +151,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\LevelSelectLayer.cpp" />
     <ClCompile Include="..\Classes\LevelSelectScene.cpp" />
     <ClCompile Include="..\Classes\MenuLayer.cpp" />
-    <ClCompile Include="..\Classes\Projectile.cpp" />
+    <ClCompile Include="..\Classes\projectile.cpp" />
     <ClCompile Include="..\Classes\StartScene.cpp" />
     <ClCompile Include="..\Classes\TopMenu.cpp" />
     <ClCompile Include="..\Classes\Tower.cpp" />
@@ -176,7 +176,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\LevelSelectLayer.h" />
     <ClInclude Include="..\Classes\LevelSelectScene.h" />
     <ClInclude Include="..\Classes\MenuLayer.h" />
-    <ClInclude Include="..\Classes\Projectile.h" />
+    <ClInclude Include="..\Classes\projectile.h" />
     <ClInclude Include="..\Classes\StartScene.h" />
     <ClInclude Include="..\Classes\TopMenu.h" />
     <ClInclude Include="..\Classes\Tower.h" />
