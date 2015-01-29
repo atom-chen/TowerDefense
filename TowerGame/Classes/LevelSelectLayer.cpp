@@ -20,7 +20,7 @@ bool LevelSelectLayer::init(){
 
 	Vector<MenuItem*> menuItemVector;
 	for(int i=0; i<2; i++){
-		std::string strName ="Level_"+cocos2d::String::createWithFormat("%d",(i+1))->_string+".png";
+		std::string strName ="level_"+cocos2d::String::createWithFormat("%d",(i+1))->_string+".png";
 		auto level = MenuItemImage::create(strName,strName,CC_CALLBACK_1(LevelSelectLayer::startGame,this));
 		  level->setTag(i+1);
           menuItemVector.pushBack(level);

@@ -3,7 +3,7 @@
 #include "Creep.h"
 #include "WayPoint.h"
 #include "Wave.h"
-#include "GameHUD .h"
+#include "GameHUD.h"
 
 USING_NS_CC;
 

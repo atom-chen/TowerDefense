@@ -1,4 +1,4 @@
-#include "GameHUD .h"
+#include "GameHUD.h"
 #include "GameData.h"
 
 
@@ -31,8 +31,8 @@ bool GameHUD::init(GameLayer* layer)
 
 	// Load the images of the towers we'll have and draw them to the game HUD layer
 	Vector<String*> images;
-	images.pushBack(StringMake("MachineGunTurret.png"));
-	images.pushBack(StringMake("MachineGunTurret.png"));
+	images.pushBack(StringMake("machinegunturret.png"));
+	images.pushBack(StringMake("machinegunturret.png"));
 	images.pushBack(StringMake("tower_damage.png"));
 	images.pushBack(StringMake("tower_damage.png"));
 	for (int i = 0; i < images.size(); ++i)
@@ -85,7 +85,7 @@ bool GameHUD::onTouchBegan(Touch *touch, Event *event)
 		{
 			GAMEDATA *m = GAMEDATA::getInstance();
 			//m.gestureRecognizer.enabled = NO;
-			selSpriteRange = Sprite::create("Range.png");
+			selSpriteRange = Sprite::create("range.png");
 			selSpriteRange->setScale(4);
 			this->addChild(selSpriteRange, -1);
 			selSpriteRange->setPosition(sprite->getPosition());

@@ -4,7 +4,7 @@
 Tower* TowerSpeed::towerSpeed()
 {
 	Tower* tower = Tower::create();
-	tower->sprite = Sprite::create("MachineGunTurret.png");
+	tower->sprite = Sprite::create("machinegunturret.png");
 	tower->addChild(tower->sprite, 0);
 	tower->range = 200;
 	tower->schedule(schedule_selector(towerLogic), 0.2);

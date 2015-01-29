@@ -2,7 +2,7 @@
 
 Projectile* Projectile::projectile()
 {
-	Projectile* projectile = (Projectile*)Sprite::create("Projectile.png");
+	Projectile* projectile = (Projectile*)Sprite::create("projectile.png");
 	if (projectile != NULL)
 	{
 		return projectile;

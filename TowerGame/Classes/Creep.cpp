@@ -24,7 +24,7 @@ Creep* Creep::initWithCreep(Creep* copyFrom)
 Creep* FastRedCreep::creep()
 {
 	auto creep = Creep::create();
-	creep->sprite = Sprite::create("Enemy1.png");
+	creep->sprite = Sprite::create("enemy1.png");
 	creep->addChild(creep->sprite, 0);
 	creep->curHp = 10;
 	creep->moveDuration = 4;
@@ -35,7 +35,7 @@ Creep* FastRedCreep::creep()
 Creep* StrongGreenCreep::creep()
 {
 	auto creep = Creep::create();
-	creep->sprite = Sprite::create("Enemy2.png");
+	creep->sprite = Sprite::create("enemy2.png");
 	creep->addChild(creep->sprite, 0);
 	creep->curHp = 20;
 	creep->moveDuration = 8; 

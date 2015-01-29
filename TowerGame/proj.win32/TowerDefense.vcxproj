@@ -143,7 +143,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\Chinese.cpp" />
     <ClCompile Include="..\Classes\Creep.cpp" />
     <ClCompile Include="..\Classes\GameData.cpp" />
-    <ClCompile Include="..\Classes\GameHUD .cpp" />
+    <ClCompile Include="..\Classes\GameHUD.cpp" />
     <ClCompile Include="..\Classes\GameLayer.cpp" />
     <ClCompile Include="..\Classes\GameOverLayer.cpp" />
     <ClCompile Include="..\Classes\GameOverScene.cpp" />
@@ -169,7 +169,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\Chinese.h" />
     <ClInclude Include="..\Classes\Creep.h" />
     <ClInclude Include="..\Classes\GameData.h" />
-    <ClInclude Include="..\Classes\GameHUD .h" />
+    <ClInclude Include="..\Classes\GameHUD.h" />
     <ClInclude Include="..\Classes\GameLayer.h" />
     <ClInclude Include="..\Classes\GameOverLayer.h" />
     <ClInclude Include="..\Classes\GameOverScene.h" />
