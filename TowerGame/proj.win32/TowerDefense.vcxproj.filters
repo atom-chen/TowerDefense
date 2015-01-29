@@ -84,6 +84,9 @@
     <ClCompile Include="..\Classes\GameHUD.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\CallAndroidMethod.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -153,6 +156,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameHUD.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CallAndroidMethod.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
