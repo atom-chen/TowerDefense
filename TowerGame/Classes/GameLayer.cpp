@@ -264,6 +264,7 @@ void GameLayer::update(float dt)
 					targetsToDelete.pushBack(creep);
 					//kill one creep get gold
 					GAMEDATA::getInstance()->setPlayerGold(GAMEDATA::getInstance()->getPlayerGold()+10);
+					GAMESTATE::getInstance()->setRefreshTopmenu(true);
 				}
 				break;
 			}
