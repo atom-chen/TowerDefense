@@ -15,25 +15,22 @@ public:
 	Vector<Tower*> towers;
 	Vector<Projectile*> projectiles;
 	void clean();
+	int getPriceByImageName(String s);
 	void setSoundState(bool state);
 	bool getSoundState();
 	void setMusicState(bool state);
 	bool getMusicState();
 	//init level info
 	void initLevelInfo(int level);
-
 	//life value
 	void setLifeValue(int value);
 	int getLifeValue();
-
 	//player gold
 	void setPlayerGold(int gold);
 	int getPlayerGold();
-
 	//level number
 	int getCurrentLevel();
 	void setCurrentLevel(int level);
-
 private:
 	GAMEDATA();
 	void init();

@@ -112,3 +112,11 @@ void GAMEDATA::clean(){
 	towers.clear();
 	projectiles.clear();
 }
+
+int GAMEDATA::getPriceByImageName(String s){
+	if(s.compare("machinegunturret.png")==0){
+		return 50;
+	}else if(s.compare("tower_damage.png")==0){
+		return 80;
+	}
+} 
