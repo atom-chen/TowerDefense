@@ -1,6 +1,5 @@
 #include "Creep.h"
 #include "WayPoint.h"
-#include "DataModel.h"
 #include "GameOverScene.h"
 #include "GameState.h"
 #include "GameData.h"
@@ -46,14 +45,14 @@ Creep* StrongGreenCreep::creep()
 
 WayPoint* Creep::getCurrentWaypoint()
 {
-	DataModel* m = DataModel::getModel();
+	GAMEDATA* m = GAMEDATA::getInstance();
 	WayPoint* waypoint = (WayPoint *)m->waypoints.at(this->curWaypoint);
 	return waypoint;
 }
 
 WayPoint* Creep::getNextWaypoint()
 {
-	DataModel* m = DataModel::getModel();
+	GAMEDATA *m = GAMEDATA::getInstance();
 	int lastWaypoint = (int)m->waypoints.size();
 	this->curWaypoint++;
 	//crrep reach  last port

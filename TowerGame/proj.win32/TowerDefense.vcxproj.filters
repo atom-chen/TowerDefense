@@ -24,9 +24,6 @@
     <ClCompile Include="..\Classes\Creep.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\DataModel.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GameData.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -96,9 +93,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Creep.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\DataModel.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameData.h">

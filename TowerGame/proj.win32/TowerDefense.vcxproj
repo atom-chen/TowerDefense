@@ -141,7 +141,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\BlinkTitle.cpp" />
     <ClCompile Include="..\Classes\Chinese.cpp" />
     <ClCompile Include="..\Classes\Creep.cpp" />
-    <ClCompile Include="..\Classes\DataModel.cpp" />
     <ClCompile Include="..\Classes\GameData.cpp" />
     <ClCompile Include="..\Classes\GameHUD .cpp" />
     <ClCompile Include="..\Classes\GameLayer.cpp" />
@@ -167,7 +166,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\BlinkTitle.h" />
     <ClInclude Include="..\Classes\Chinese.h" />
     <ClInclude Include="..\Classes\Creep.h" />
-    <ClInclude Include="..\Classes\DataModel.h" />
     <ClInclude Include="..\Classes\GameData.h" />
     <ClInclude Include="..\Classes\GameHUD .h" />
     <ClInclude Include="..\Classes\GameLayer.h" />

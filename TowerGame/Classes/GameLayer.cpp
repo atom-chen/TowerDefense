@@ -1,6 +1,5 @@
 #include "GameLayer.h"
 #include "Tower.h"
-#include "DataModel.h"
 #include "GameOverScene.h"
 #include "TopMenu.h"
 #include <Vector>
@@ -20,12 +19,9 @@ bool GameLayer::init()
 	}
 
 	//add HUD and init DataModle
-	auto myGameHUD = GameHUD::create();
+	auto myGameHUD = GameHUD::create(this);
 	this->addChild(myGameHUD, 1);
-	DataModel* m = DataModel::getModel();
-	m->clean();
-	m->_gameLayer = this;
-	m->_gameHUDLayer = myGameHUD;
+    GAMEDATA::getInstance()->clean();
 	
 	this->tileMap = TMXTiledMap::create(UserDefault::getInstance()->getStringForKey("nextLevelFile"));
 	this->background = tileMap->layerNamed("Background");
@@ -64,7 +60,7 @@ void GameLayer::FollowPath(Node* sender)
 
 void GameLayer::addWaves()
 {
-	DataModel *m = DataModel::getModel();
+	GAMEDATA *m = GAMEDATA::getInstance();
 	Wave *wave = NULL;
 	wave = Wave::create()->initWithCreep(FastRedCreep::creep(), 0.3, 50);
 	m->waves.pushBack(wave);
@@ -76,7 +72,7 @@ void GameLayer::addWaves()
 
 Wave* GameLayer::getCurrentWave()
 {
-	DataModel *m = DataModel::getModel();
+	GAMEDATA *m = GAMEDATA::getInstance();
 	Wave * wave = (Wave *)m->waves.at(this->currentLevel);
 
 	return wave;
@@ -84,7 +80,7 @@ Wave* GameLayer::getCurrentWave()
 
 Wave* GameLayer::getNextWave()
 {
-	DataModel *m = DataModel::getModel();
+	GAMEDATA *m = GAMEDATA::getInstance();
 	this->currentLevel++;
 	if (this->currentLevel > 1)
 		this->currentLevel = 0;
@@ -96,7 +92,7 @@ Wave* GameLayer::getNextWave()
 
 void GameLayer::addWaypoint()
 {
-	DataModel *m = DataModel::getModel();
+	GAMEDATA *m = GAMEDATA::getInstance();
 	auto *objects = this->tileMap->objectGroupNamed("Objects");
 	WayPoint *wp = NULL;
 	std::string stringWithFormat = "Waypoint";
@@ -119,7 +115,7 @@ void GameLayer::addWaypoint()
 void GameLayer::addTarget()
 {
 
-	DataModel *m = DataModel::getModel();
+	GAMEDATA *m = GAMEDATA::getInstance();
 	Wave* wave = this->getCurrentWave();
 	if (wave->totalCreeps < 0) {
 		return;
@@ -187,7 +183,7 @@ bool GameLayer::canBuildOnTilePosition(Point pos)
 
 void GameLayer::addTower(Point pos,String imageName)
 {
-	DataModel *m = DataModel::getModel();
+	GAMEDATA *m = GAMEDATA::getInstance();
 	Tower *target = NULL ;
 	Point towerLoc = this->tileCoordForPosition(pos);
 
@@ -223,7 +219,7 @@ void GameLayer::addTower(Point pos,String imageName)
 
 void GameLayer::gameLogic(float dt)
 {
-	DataModel *m = DataModel::getModel();
+	GAMEDATA *m = GAMEDATA::getInstance();
 	Wave * wave = this->getCurrentWave();
 	static double lastTimeTargetAdded = 0;
 
@@ -237,7 +233,7 @@ void GameLayer::gameLogic(float dt)
 
 void GameLayer::update(float dt)
 {
-	DataModel *m = DataModel::getModel();
+	GAMEDATA *m = GAMEDATA::getInstance();
 	Vector<Projectile*> projectilesToDelete;
 
 	for (Projectile *projectile : m->projectiles) 

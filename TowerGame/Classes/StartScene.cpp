@@ -1,5 +1,5 @@
 #include "StartScene.h"
-#include"MenuLayer.h"
+#include "MenuLayer.h"
 USING_NS_CC;
 
 Scene* StartScene::createScene()

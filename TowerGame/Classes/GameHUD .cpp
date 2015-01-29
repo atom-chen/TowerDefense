@@ -1,16 +1,26 @@
 #include "GameHUD .h"
-#include "DataModel.h"
+#include "GameData.h"
 
 
-bool GameHUD::init()
+GameHUD* GameHUD::create(GameLayer* layer){
+	GameHUD* ret = new GameHUD();
+	if(ret && ret->init(layer)){
+		ret->autorelease();
+		return ret;
+	}
+	CC_SAFE_DELETE(ret);
+	return nullptr;
+}
+
+
+bool GameHUD::init(GameLayer* layer)
 {
-	if (!Layer::init()) 
+	if (!Node::init()) 
 	{
 		return false;
 	}
-
+	m_layer = layer;
 	Size winSize = CCDirector::getInstance()->getWinSize();
-
 	// Draw the background of the game HUD
 	CCTexture2D::setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_RGB565);
 	background = Sprite::create("hud.png");
@@ -41,7 +51,7 @@ bool GameHUD::init()
 
 void GameHUD::onEnter()
 {
-	Layer::onEnter();
+	Node::onEnter();
 
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->setSwallowTouches(true);
@@ -73,7 +83,7 @@ bool GameHUD::onTouchBegan(Touch *touch, Event *event)
 		float yMax = pos_rect.getMaxY();
 		if (pos_rect.containsPoint(touchLocation))
 		{
-			DataModel *m = DataModel::getModel();
+			GAMEDATA *m = GAMEDATA::getInstance();
 			//m.gestureRecognizer.enabled = NO;
 			selSpriteRange = Sprite::create("Range.png");
 			selSpriteRange->setScale(4);
@@ -106,10 +116,9 @@ void GameHUD::onTouchMoved(Touch* touch,Event* event)
 		selSprite->setPosition(newPos);
 		selSpriteRange->setPosition(newPos);
 
-		DataModel *m = DataModel::getModel();
-		Point touchLocationInGameLayer = m->_gameLayer->convertTouchToNodeSpace(touch);
+		Point touchLocationInGameLayer = m_layer->convertTouchToNodeSpace(touch);
 
-		BOOL isBuildable = m->_gameLayer->canBuildOnTilePosition(touchLocationInGameLayer);
+		BOOL isBuildable =m_layer->canBuildOnTilePosition(touchLocationInGameLayer);
 		if (isBuildable) 
 		{
 			selSprite->setOpacity(200);
@@ -125,8 +134,6 @@ void GameHUD::onTouchEnded(Touch* touch, Event* event)
 {
 	
 	Point touchLocation = this->convertTouchToNodeSpace(touch);
-	DataModel *m = DataModel::getModel();
-
 	if (selSprite) 
 	{
 		Rect backgroundRect = Rect(background->getPositionX(),
@@ -134,10 +141,10 @@ void GameHUD::onTouchEnded(Touch* touch, Event* event)
 			background->getContentSize().width,
 		 	background->getContentSize().height);
 
-		if (!backgroundRect.containsPoint(touchLocation) && m->_gameLayer->canBuildOnTilePosition(touchLocation))
+		if (!backgroundRect.containsPoint(touchLocation) && m_layer->canBuildOnTilePosition(touchLocation))
 		{
-			Point touchLocationInGameLayer = m->_gameLayer->convertTouchToNodeSpace(touch);
-			m->_gameLayer->addTower(touchLocationInGameLayer,selSprite->getName());
+			Point touchLocationInGameLayer = m_layer->convertTouchToNodeSpace(touch);
+			m_layer->addTower(touchLocationInGameLayer,selSprite->getName());
 		}
 
 		this->removeChild(selSprite,true);

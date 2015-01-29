@@ -1,5 +1,5 @@
 #include "Tower.h"
-#include "DataModel.h"
+#include "GameData.h"
 
 
 Creep* Tower::getClosesTarget()
@@ -7,7 +7,7 @@ Creep* Tower::getClosesTarget()
 	Creep *closestCreep = NULL;
 	double maxDistant = 99999;
 
-	DataModel *m = DataModel::getModel();
+	GAMEDATA *m = GAMEDATA::getInstance();
 
 	for (Sprite *target : m->targets) 
 	{

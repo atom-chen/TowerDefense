@@ -104,3 +104,11 @@ void GAMEDATA::initLevelInfo(int Level){
 	initPlayerGold(Level);
 	initLifeValue(Level);
 }
+
+void GAMEDATA::clean(){
+	waypoints.clear();
+	targets.clear();
+	waves.clear();
+	towers.clear();
+	projectiles.clear();
+}

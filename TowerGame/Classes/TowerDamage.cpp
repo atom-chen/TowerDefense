@@ -1,5 +1,5 @@
 #include "Tower.h"
-#include "DataModel.h"
+#include "GameData.h"
 
 Tower* TowerDamage::towerDamage()
 {
@@ -42,7 +42,7 @@ void TowerDamage::towerLogic(float dt)
 
 void TowerDamage::finishFiring()
 {
-	DataModel *m = DataModel::getModel();
+	GAMEDATA *m = GAMEDATA::getInstance();
 
 	if (this->target != NULL && this->target->curHp > 0 && this->target->curHp < 100)
 	{
@@ -69,7 +69,7 @@ void TowerDamage::finishFiring()
 
 void TowerDamage::creepMoveFinished(Node* sender)
 {
-	DataModel * m = DataModel::getModel();
+	GAMEDATA *m = GAMEDATA::getInstance();
 	Sprite *sprite = (Sprite *)sender;
 	this->getParent()->removeChild(sprite,true);
 

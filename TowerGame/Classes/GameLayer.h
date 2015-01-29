@@ -14,7 +14,6 @@ public:
 	TMXLayer* background;
 	int currentLevel;
 	Point position;
-	GameHUD* gameHUD;
 	void addWaypoint();
 	void addWaves();
 	void addTower(Point pos,String imageName);
