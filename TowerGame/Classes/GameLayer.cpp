@@ -17,6 +17,8 @@ bool GameLayer::init()
 	{
 		return false;
 	}
+	GAMEDATA::getInstance()->initLevelInfo(GAMEDATA::getInstance()->getCurrentLevel());
+	GAMESTATE::getInstance()->reset();
 
 	//add HUD and init DataModle
 	auto myGameHUD = GameHUD::create(this);
@@ -28,8 +30,6 @@ bool GameLayer::init()
 	this->background->setAnchorPoint(ccp(0, 0));
 	this->addChild(tileMap, 0);
 
-	GAMEDATA::getInstance()->initLevelInfo(GAMEDATA::getInstance()->getCurrentLevel());
-	GAMESTATE::getInstance()->reset();
 	//add topMenu to GameLayer
 	auto TopMenu = TopMenu::getInstance();
 	this->addChild(TopMenu,2);
@@ -190,26 +190,26 @@ void GameLayer::addTower(Point pos,String imageName)
 	int tileGid = this->background->tileGIDAt(towerLoc);
 	Value props = this->tileMap->propertiesForGID(tileGid);
 	ValueMap map = props.asValueMap();
-
 	int type_int = map.at("buildable").asInt();
-
 	if (1 == type_int) 
 	{   
-		if(imageName.compare("MachineGunTurret.png")==0){
+		if(imageName.compare("machinegunturret.png")==0){
 			target = TowerSpeed::towerSpeed();
 			target->setPosition(ccp((towerLoc.x * 32) + 16, this->tileMap->getContentSize().height - (towerLoc.y * 32) - 16));
 			this->addChild(target,1);
 			target->setTag(1);
 			m->towers.pushBack(target);
+			
 		}else{
 			target = TowerDamage::towerDamage();
 			target->setPosition(ccp((towerLoc.x * 32) + 16, this->tileMap->getContentSize().height - (towerLoc.y * 32) - 16));
 			this->addChild(target,1);
 			target->setTag(1);
 			m->towers.pushBack(target);
-
 		}
-
+		auto money=GAMEDATA::getInstance()->getPriceByImageName(imageName);
+		GAMEDATA::getInstance()->setPlayerGold( GAMEDATA::getInstance()->getPlayerGold()-money);
+		GAMESTATE::getInstance()->setRefreshTopmenu(true);
 	}
 	else 
 	{

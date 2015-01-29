@@ -1,13 +1,10 @@
-#ifndef _GAMEHUD_H_
-#define _GAMEHUD_H_
+#pragma  once
 #include "cocos2d.h"
 #include "GameLayer.h"
 #include "cocos2d.h"
-
 USING_NS_CC;
 
 class GameLayer;
-
 class GameHUD: public Node 
 {
 public:
@@ -24,4 +21,3 @@ public:
 private:
 	GameLayer* m_layer;
 };
-#endif

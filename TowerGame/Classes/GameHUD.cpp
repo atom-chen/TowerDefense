@@ -24,7 +24,6 @@ bool GameHUD::init(GameLayer* layer)
 	// Draw the background of the game HUD
 	CCTexture2D::setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_RGB565);
 	background = Sprite::create("hud.png");
-	background->setScaleX (2);
 	background->setAnchorPoint(ccp(0, 0));
 	this->addChild(background);
 	CCTexture2D::setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_Default);
@@ -32,16 +31,22 @@ bool GameHUD::init(GameLayer* layer)
 	// Load the images of the towers we'll have and draw them to the game HUD layer
 	Vector<String*> images;
 	images.pushBack(StringMake("machinegunturret.png"));
-	images.pushBack(StringMake("machinegunturret.png"));
-	images.pushBack(StringMake("tower_damage.png"));
 	images.pushBack(StringMake("tower_damage.png"));
 	for (int i = 0; i < images.size(); ++i)
 	{
 		String* image = images.at(i);
-		auto *sprite = Sprite::create(image->getCString());
+		Sprite *sprite; 
+		if(GAMEDATA::getInstance()->getPriceByImageName(image->getCString())>GAMEDATA::getInstance()->getPlayerGold()){
+		  sprite = Sprite::create("lock.png");
+		  sprite->setTag(999);
+		}else{
+		  sprite = Sprite::create(image->getCString());
+		   sprite->setTag(0);
+		}
 		sprite->setName(image->getCString());
-		float offsetFraction = ((float)(i + 1)) / (images.size() + 1);
-		sprite->setPosition(ccp(winSize.width*offsetFraction, 35));
+		background->setAnchorPoint(ccp(0, 0));
+		float offsetFraction = (images.size()+100)*(i+1);
+		sprite->setPosition(ccp(winSize.width-offsetFraction, 35));
 		this->addChild(sprite);
 		movableSprites.pushBack(sprite);
 	}
@@ -83,8 +88,9 @@ bool GameHUD::onTouchBegan(Touch *touch, Event *event)
 		float yMax = pos_rect.getMaxY();
 		if (pos_rect.containsPoint(touchLocation))
 		{
-			GAMEDATA *m = GAMEDATA::getInstance();
-			//m.gestureRecognizer.enabled = NO;
+			if(sprite->getTag()==999){
+				return false; 
+			}
 			selSpriteRange = Sprite::create("range.png");
 			selSpriteRange->setScale(4);
 			this->addChild(selSpriteRange, -1);
@@ -154,4 +160,4 @@ void GameHUD::onTouchEnded(Touch* touch, Event* event)
 	}
 }
 
- 
+
