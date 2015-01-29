@@ -10,11 +10,15 @@ public:
 	bool getGamePause();
 	void setGameOver(bool over);
 	bool getGameOver();
+	void setRefreshTopmenu(bool refresh);
+	bool getRefreshTopmenu();
+
 private:
 	GAMESTATE();
 	void init();
 	static GAMESTATE* _instance;
 	bool gamePause;
 	bool gameOver;
+	bool refreshTopmenu;
 };
 #endif

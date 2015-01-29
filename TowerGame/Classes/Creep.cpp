@@ -59,9 +59,9 @@ WayPoint* Creep::getNextWaypoint()
 	//crrep reach  last port
 	if (this->curWaypoint >= lastWaypoint){
 		this->curWaypoint = lastWaypoint - 1;
-		if(GAMEDATA::getInstance()->getLifeValue()>1){
+		if(GAMEDATA::getInstance()->getLifeValue()>0){
 			GAMEDATA::getInstance()->setLifeValue(GAMEDATA::getInstance()->getLifeValue()-1);
-			TopMenu::getInstance()->refresh();
+			GAMESTATE::getInstance()->setRefreshTopmenu(true);
 		}else{
 			GAMESTATE::getInstance()->setGameOver(true);
 		}
@@ -78,10 +78,8 @@ void Creep::creepLogic(float dt)
 	Point waypointVector = waypoint->getPosition()-this->getPosition();
 	float waypointAngle = ccpToAngle(waypointVector);
 	float cocosAngle = CC_RADIANS_TO_DEGREES(-1 * waypointAngle);
-
 	float rotateSpeed = 0.5 / M_PI;
 	float rotateDuration = fabs(waypointAngle * rotateSpeed);
-
 	this->runAction(Sequence::create(RotateTo::create(rotateDuration,cocosAngle),NULL));
 }
 

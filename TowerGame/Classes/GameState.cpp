@@ -39,3 +39,11 @@ void GAMESTATE::setGameOver(bool over){
 bool GAMESTATE::getGameOver(){
 	return gameOver;
 }
+
+void GAMESTATE::setRefreshTopmenu(bool refresh){
+	refreshTopmenu = refresh;
+}
+
+bool GAMESTATE::getRefreshTopmenu(){
+	return refreshTopmenu;
+}
