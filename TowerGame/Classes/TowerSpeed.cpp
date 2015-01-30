@@ -13,7 +13,7 @@ Tower* TowerSpeed::towerSpeed()
 
 bool TowerSpeed::init()
 {
-	if (!Sprite::init()) 
+	if (!Tower::init()) 
 	{
 		return false;
 	}

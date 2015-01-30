@@ -115,7 +115,7 @@ void GAMEDATA::initLevelInfo(int Level){
 }
 
 void GAMEDATA::clean(){
-	if(!towers.empty()){towers.clear();}
+	//if(!towers.empty()){towers.clear();}
 	if(!waypoints.empty()){waypoints.clear();}
 	if(!targets.empty()){targets.clear();}
 	if(!waves.empty()){waves.clear();}

@@ -13,7 +13,7 @@ Tower* TowerDamage::towerDamage()
 
 bool TowerDamage::init()
 {
-	if (!Sprite::init()) 
+	if (!Tower::init()) 
 	{
 		return false;
 	}

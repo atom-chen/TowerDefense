@@ -12,7 +12,7 @@ public:
 	Vector<WayPoint*> waypoints;
 	Vector<Creep*> targets;
 	Vector<Wave*> waves;
-	Vector<Tower*> towers;
+	//Vector<Tower*> towers;
 	Vector<Projectile*> projectiles;
 	void clean();
 	int getPriceByImageName(String s);
