@@ -9,7 +9,7 @@ GAMEDATA::GAMEDATA(){
 }
 
 void GAMEDATA::init(){
-
+	currentWave=0;
 }
 
 GAMEDATA* GAMEDATA::getInstance(){
@@ -100,6 +100,15 @@ int GAMEDATA::getCurrentLevel(){
 	return Level;
 }
 
+void GAMEDATA::setCurrentWave(int wave){
+	currentWave =wave;
+}
+
+int GAMEDATA::getCurrentWave(){
+	return currentWave;
+}
+
+
 void GAMEDATA::initLevelInfo(int Level){
 	initPlayerGold(Level);
 	initLifeValue(Level);
@@ -111,6 +120,7 @@ void GAMEDATA::clean(){
 	waves.clear();
 	towers.clear();
 	projectiles.clear();
+	currentWave=0;
 }
 
 int GAMEDATA::getPriceByImageName(String s){

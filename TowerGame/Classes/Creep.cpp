@@ -53,23 +53,20 @@ WayPoint* Creep::getCurrentWaypoint()
 WayPoint* Creep::getNextWaypoint()
 {
 	GAMEDATA *m = GAMEDATA::getInstance();
-	int lastWaypoint = (int)m->waypoints.size();
+	int lastWaypoint = (int)m->waypoints.size()-1;
 	this->curWaypoint++;
 	//crrep reach  last port
-	if (this->curWaypoint >= lastWaypoint){
-		this->curWaypoint = lastWaypoint - 1;
+	if (this->curWaypoint > lastWaypoint){
+		this->curWaypoint = lastWaypoint;
 		if(GAMEDATA::getInstance()->getLifeValue()>0){
 			GAMEDATA::getInstance()->setLifeValue(GAMEDATA::getInstance()->getLifeValue()-1);
 			GAMESTATE::getInstance()->setRefreshTopmenu(true);
+			m->targets.eraseObject(this);
+			this->removeFromParentAndCleanup(true);
 		}else{
 			GAMESTATE::getInstance()->setGameOver(true);
 			GAMESTATE::getInstance()->setLevelResult(false);
 		}
-		for (Creep *target : m->targets)
-		{
-			m->targets.eraseObject(target);
-			this->removeChild(target, true);
-		}		
 	}
 
 	WayPoint *waypoint = (WayPoint *)m->waypoints.at(curWaypoint);
@@ -79,7 +76,6 @@ WayPoint* Creep::getNextWaypoint()
 void Creep::creepLogic(float dt)
 {
 	WayPoint* waypoint = this->getCurrentWaypoint();
-
 	Point waypointVector = waypoint->getPosition()-this->getPosition();
 	float waypointAngle = ccpToAngle(waypointVector);
 	float cocosAngle = CC_RADIANS_TO_DEGREES(-1 * waypointAngle);

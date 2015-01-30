@@ -31,6 +31,10 @@ public:
 	//level number
 	int getCurrentLevel();
 	void setCurrentLevel(int level);
+	//waves 
+	int getCurrentWave();
+	void setCurrentWave(int wave);
+
 private:
 	GAMEDATA();
 	void init();
@@ -38,6 +42,7 @@ private:
 	int playerGold;
 	int lifeValue;
 	int Level;
+	int currentWave;
 	void initLifeValue(int Level);
 	void initPlayerGold(int level);
 

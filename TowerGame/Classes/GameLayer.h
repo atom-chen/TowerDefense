@@ -12,7 +12,6 @@ class GameLayer: public Layer
 public:
 	TMXTiledMap* tileMap;
 	TMXLayer* background;
-	int currentWave;
 	Point position;
 	void addWaypoint();
 	void addWaves();

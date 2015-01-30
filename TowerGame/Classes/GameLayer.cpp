@@ -23,8 +23,8 @@ bool GameLayer::init()
 	//add HUD and init DataModle
 	auto myGameHUD = GameHUD::create(this);
 	this->addChild(myGameHUD, 1);
-    GAMEDATA::getInstance()->clean();
-	  std::string strName ="map_level_"+cocos2d::String::createWithFormat("%d",GAMEDATA::getInstance()->getCurrentLevel())->_string+".tmx";
+	GAMEDATA::getInstance()->clean();
+	std::string strName ="map_level_"+cocos2d::String::createWithFormat("%d",GAMEDATA::getInstance()->getCurrentLevel())->_string+".tmx";
 	this->tileMap = TMXTiledMap::create(strName);
 	this->background = tileMap->layerNamed("Background");
 	this->background->setAnchorPoint(ccp(0, 0));
@@ -40,7 +40,6 @@ bool GameLayer::init()
 
 	this->scheduleUpdate();
 	this->schedule(schedule_selector(GameLayer::gameLogic), 1.0f);
-	this->currentWave = 0;
 	this->position = ccp(-228, -122);
 
 	return true;
@@ -62,7 +61,7 @@ void GameLayer::addWaves()
 {
 	GAMEDATA *m = GAMEDATA::getInstance();
 	Wave *wave = NULL;
-	wave = Wave::create()->initWithCreep(FastRedCreep::creep(), 0.3, 5);
+	wave = Wave::create()->initWithCreep(FastRedCreep::creep(), 0.3, 1);
 	m->waves.pushBack(wave);
 	wave = NULL;
 	wave = Wave::create()->initWithCreep(StrongGreenCreep::creep(),1.0,5);
@@ -73,7 +72,7 @@ void GameLayer::addWaves()
 Wave* GameLayer::getCurrentWave()
 {
 	GAMEDATA *m = GAMEDATA::getInstance();
-	Wave * wave = (Wave *)m->waves.at(this->currentWave);
+	Wave * wave = (Wave *)m->waves.at(m->getCurrentWave());
 	return wave;
 }
 
@@ -105,7 +104,7 @@ void GameLayer::addTarget()
 
 	GAMEDATA *m = GAMEDATA::getInstance();
 	Wave* wave = this->getCurrentWave();
-	if (wave->totalCreeps < 0) {
+	if (wave->totalCreeps <= 0) {
 		return;
 	}
 	wave->totalCreeps--;
@@ -216,12 +215,15 @@ void GameLayer::gameLogic(float dt)
 		this->addTarget();
 		lastTimeTargetAdded = now;
 	}
-	if(m->targets.size()==0){
-		CCLOG("currentWave =,%d",currentWave);
-		currentWave++;
-		if(currentWave>1){
-			//pass this level
+	if(m->targets.size()==0&&!GAMESTATE::getInstance()->getGameOver()){
+		auto num=m->getCurrentWave();
+		num++;
+		if(num>=(m->waves.size())){
+			GAMESTATE::getInstance()->setGameOver(true);
+			GAMESTATE::getInstance()->setLevelResult(true);
+			return;
 		}
+		m->setCurrentWave(num);
 	}
 }
 
