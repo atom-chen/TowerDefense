@@ -115,11 +115,11 @@ void GAMEDATA::initLevelInfo(int Level){
 }
 
 void GAMEDATA::clean(){
-	waypoints.clear();
-	targets.clear();
-	waves.clear();
-	towers.clear();
-	projectiles.clear();
+	if(!towers.empty()){towers.clear();}
+	if(!waypoints.empty()){waypoints.clear();}
+	if(!targets.empty()){targets.clear();}
+	if(!waves.empty()){waves.clear();}
+	if(!projectiles.empty()){projectiles.clear();}
 	currentWave=0;
 }
 

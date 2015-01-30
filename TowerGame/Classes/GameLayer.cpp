@@ -19,11 +19,10 @@ bool GameLayer::init()
 	}
 	GAMEDATA::getInstance()->initLevelInfo(GAMEDATA::getInstance()->getCurrentLevel());
 	GAMESTATE::getInstance()->reset();
-
+	GAMEDATA::getInstance()->clean();
 	//add HUD and init DataModle
 	auto myGameHUD = GameHUD::create(this);
 	this->addChild(myGameHUD, 1);
-	GAMEDATA::getInstance()->clean();
 	std::string strName ="map_level_"+cocos2d::String::createWithFormat("%d",GAMEDATA::getInstance()->getCurrentLevel())->_string+".tmx";
 	this->tileMap = TMXTiledMap::create(strName);
 	this->background = tileMap->layerNamed("Background");
