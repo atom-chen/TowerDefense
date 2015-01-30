@@ -40,7 +40,7 @@ bool GameLayer::init()
 
 	this->scheduleUpdate();
 	this->schedule(schedule_selector(GameLayer::gameLogic), 1.0f);
-	this->currentLevel = 0;
+	this->currentWave = 0;
 	this->position = ccp(-228, -122);
 
 	return true;
@@ -62,7 +62,7 @@ void GameLayer::addWaves()
 {
 	GAMEDATA *m = GAMEDATA::getInstance();
 	Wave *wave = NULL;
-	wave = Wave::create()->initWithCreep(FastRedCreep::creep(), 0.3, 50);
+	wave = Wave::create()->initWithCreep(FastRedCreep::creep(), 0.3, 5);
 	m->waves.pushBack(wave);
 	wave = NULL;
 	wave = Wave::create()->initWithCreep(StrongGreenCreep::creep(),1.0,5);
@@ -73,22 +73,10 @@ void GameLayer::addWaves()
 Wave* GameLayer::getCurrentWave()
 {
 	GAMEDATA *m = GAMEDATA::getInstance();
-	Wave * wave = (Wave *)m->waves.at(this->currentLevel);
-
+	Wave * wave = (Wave *)m->waves.at(this->currentWave);
 	return wave;
 }
 
-Wave* GameLayer::getNextWave()
-{
-	GAMEDATA *m = GAMEDATA::getInstance();
-	this->currentLevel++;
-	if (this->currentLevel > 1)
-		this->currentLevel = 0;
-
-	Wave * wave = (Wave *)m->waves.at(this->currentLevel);
-
-	return wave;
-}
 
 void GameLayer::addWaypoint()
 {
@@ -222,12 +210,18 @@ void GameLayer::gameLogic(float dt)
 	GAMEDATA *m = GAMEDATA::getInstance();
 	Wave * wave = this->getCurrentWave();
 	static double lastTimeTargetAdded = 0;
-
 	double now = 0;
 	if (lastTimeTargetAdded == 0 || now - lastTimeTargetAdded >= wave->spawnRate) 
 	{
 		this->addTarget();
 		lastTimeTargetAdded = now;
+	}
+	if(m->targets.size()==0){
+		CCLOG("currentWave =,%d",currentWave);
+		currentWave++;
+		if(currentWave>1){
+			//pass this level
+		}
 	}
 }
 
@@ -235,7 +229,6 @@ void GameLayer::update(float dt)
 {
 	GAMEDATA *m = GAMEDATA::getInstance();
 	Vector<Projectile*> projectilesToDelete;
-
 	for (Projectile *projectile : m->projectiles) 
 	{
 		Rect projectileRect = Rect(projectile->getPositionX() - (projectile->getContentSize().width / 2),

@@ -65,6 +65,11 @@ WayPoint* Creep::getNextWaypoint()
 			GAMESTATE::getInstance()->setGameOver(true);
 			GAMESTATE::getInstance()->setLevelResult(false);
 		}
+		for (Creep *target : m->targets)
+		{
+			m->targets.eraseObject(target);
+			this->removeChild(target, true);
+		}		
 	}
 
 	WayPoint *waypoint = (WayPoint *)m->waypoints.at(curWaypoint);

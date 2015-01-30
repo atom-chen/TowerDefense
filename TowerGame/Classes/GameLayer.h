@@ -12,7 +12,7 @@ class GameLayer: public Layer
 public:
 	TMXTiledMap* tileMap;
 	TMXLayer* background;
-	int currentLevel;
+	int currentWave;
 	Point position;
 	void addWaypoint();
 	void addWaves();
@@ -23,7 +23,6 @@ public:
 	virtual void update(float dt);
 	void FollowPath(Node* sender);
 	Wave* getCurrentWave();
-	Wave* getNextWave();
 	void gameLogic(float dt);
 	void addTarget();
 	Point boundLayerPos(Point newPos);
