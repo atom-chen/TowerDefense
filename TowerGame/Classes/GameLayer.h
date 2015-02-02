@@ -24,6 +24,7 @@ public:
 	Wave* getCurrentWave();
 	void gameLogic(float dt);
 	void addTarget();
+	void usePropBomb();
 	Point boundLayerPos(Point newPos);
 	CREATE_FUNC(GameLayer);
 };

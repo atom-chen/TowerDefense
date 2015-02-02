@@ -37,6 +37,12 @@ bool GameLayer::init()
 	this->addWaypoint();
 	this->addWaves();
 
+	//add prop bomb
+	auto bomb = MenuItemImage::create("bomb.png","bomb.png",CC_CALLBACK_0(GameLayer::usePropBomb,this));
+	auto  bombBtn =  Menu::create(bomb,NULL);
+	bombBtn->setPosition(Point(200,200));
+	this->addChild(bombBtn);
+
 	this->scheduleUpdate();
 	this->schedule(schedule_selector(GameLayer::gameLogic), 1.0f);
 	this->position = ccp(-228, -122);
@@ -185,7 +191,7 @@ void GameLayer::addTower(Point pos,String imageName)
 			this->addChild(target,1);
 			target->setTag(1);
 			//m->towers.pushBack(target);
-			
+
 		}else{
 			target = TowerDamage::towerDamage();
 			target->setPosition(ccp((towerLoc.x * 32) + 16, this->tileMap->getContentSize().height - (towerLoc.y * 32) - 16));
@@ -291,4 +297,15 @@ Point GameLayer::boundLayerPos(Point newPos)
 	retval.y = MIN(0, retval.y);
 	retval.y = MAX(tileMap->getContentSize().height + winSize.height, retval.y);
 	return retval;
+}
+
+void GameLayer::usePropBomb(){
+	//消灭地图上可见的怪物
+	GAMEDATA *m = GAMEDATA::getInstance();
+	Vector<Creep*> targetsToDelete=m->targets;
+	for (Creep *target : targetsToDelete)
+	{
+		m->targets.eraseObject(target);
+		this->removeChild(target, true);
+	}		
 }
