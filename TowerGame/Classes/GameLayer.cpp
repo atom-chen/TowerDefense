@@ -184,14 +184,14 @@ void GameLayer::addTower(Point pos,String imageName)
 			target->setPosition(ccp((towerLoc.x * 32) + 16, this->tileMap->getContentSize().height - (towerLoc.y * 32) - 16));
 			this->addChild(target,1);
 			target->setTag(1);
-			m->towers.pushBack(target);
+			//m->towers.pushBack(target);
 			
 		}else{
 			target = TowerDamage::towerDamage();
 			target->setPosition(ccp((towerLoc.x * 32) + 16, this->tileMap->getContentSize().height - (towerLoc.y * 32) - 16));
 			this->addChild(target,1);
 			target->setTag(1);
-			m->towers.pushBack(target);
+			//m->towers.pushBack(target);
 		}
 		auto money=GAMEDATA::getInstance()->getPriceByImageName(imageName);
 		GAMEDATA::getInstance()->setPlayerGold( GAMEDATA::getInstance()->getPlayerGold()-money);
