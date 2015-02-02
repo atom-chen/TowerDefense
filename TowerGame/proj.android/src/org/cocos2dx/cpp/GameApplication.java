@@ -1,13 +1,13 @@
 package org.cocos2dx.cpp;
 
-import com.poxiao.pay.star.GamePay;
+import com.poxiao.pay.tower.GamePay;
 import com.tallbigup.android.cloud.CreatePlayerCallback;
 import com.tallbigup.android.cloud.LayoutUtil;
 import com.tallbigup.android.cloud.TbuCallback;
 import com.tallbigup.android.cloud.TbuCloud;
 import com.tallbigup.buffett.plugin.configuration.Configuration;
 import com.tallbigup.buffett.plugin.deviceinfo.DeviceInfo;
-import com.tallbigup.star.R;
+import com.tallbigup.tower.R;
 
 import android.app.ActivityManager;
 import android.app.Application;
