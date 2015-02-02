@@ -17,10 +17,10 @@ bool LevelSelectLayer::init(){
 	background->setPosition(visibleSize.width/2,visibleSize.height/2);
 	this->addChild(background,-1);
 
-	auto startGameBtn = MenuItemImage::create("start_game.png","start_game.png",CC_CALLBACK_0(LevelSelectLayer::startGame,this));
+	/*auto startGameBtn = MenuItemImage::create("start_game.png","start_game.png",CC_CALLBACK_0(LevelSelectLayer::startGame,this));
 	Menu* menu = Menu::create(startGameBtn, NULL);
 	menu->setPosition(visibleSize.width/2,visibleSize.height/2-150);
-	this->addChild(menu); 
+	this->addChild(menu); */
 
 
 	Vector<MenuItem*> menuItemVector;
@@ -43,9 +43,10 @@ void LevelSelectLayer::levelSelect(Ref* pSender){
 	//add level logic
     auto button = (Sprite *)pSender;
 	GAMEDATA::getInstance()->setCurrentLevel(button->getTag());
+	Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
 	
 }
 
-void LevelSelectLayer::startGame(){
-	Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
-}
+//void LevelSelectLayer::startGame(){
+//	Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
+//}
