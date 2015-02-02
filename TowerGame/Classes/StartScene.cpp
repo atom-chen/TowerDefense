@@ -1,5 +1,5 @@
 #include "StartScene.h"
-#include "MenuLayer.h"
+#include "LevelSelectLayer.h"
 USING_NS_CC;
 
 Scene* StartScene::createScene()
@@ -27,7 +27,7 @@ bool StartScene::init()
         return false;
     }
     // this->setIsKeypadEnabled(true);
-    this->addChild(MenuLayer::create());
+    this->addChild(LevelSelectLayer::create());
     
     return true;
 }

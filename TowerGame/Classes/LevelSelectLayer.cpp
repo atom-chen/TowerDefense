@@ -17,37 +17,35 @@ bool LevelSelectLayer::init(){
 	background->setPosition(visibleSize.width/2,visibleSize.height/2);
 	this->addChild(background,-1);
 
+	auto startGameBtn = MenuItemImage::create("start_game.png","start_game.png",CC_CALLBACK_0(LevelSelectLayer::startGame,this));
+	Menu* menu = Menu::create(startGameBtn, NULL);
+	menu->setPosition(visibleSize.width/2,visibleSize.height/2-150);
+	this->addChild(menu); 
+
 
 	Vector<MenuItem*> menuItemVector;
 	for(int i=0; i<2; i++){
-		std::string strName ="level_"+cocos2d::String::createWithFormat("%d",(i+1))->_string+".png";
-		auto level = MenuItemImage::create(strName,strName,CC_CALLBACK_1(LevelSelectLayer::startGame,this));
-		  level->setTag(i);
-          menuItemVector.pushBack(level);
+		std::string strNoraml ="level_normal_"+cocos2d::String::createWithFormat("%d",(i+1))->_string+".png";
+		std::string strSelect ="level_select_"+cocos2d::String::createWithFormat("%d",(i+1))->_string+".png";
+		auto level = MenuItemImage::create(strNoraml,strSelect,CC_CALLBACK_1(LevelSelectLayer::levelSelect,this));
+		level->setTag(i);
+		menuItemVector.pushBack(level);
 	}
 	auto levelMenu = Menu::createWithArray(menuItemVector);
 	levelMenu->alignItemsHorizontallyWithPadding (100);
 	levelMenu->setPosition(visibleSize.width/2,visibleSize.height/2);
-	
 	this->addChild(levelMenu); 
-
-
-	//add goback button
-	auto goBackBtn = MenuItemImage::create("go_back.png","go_back.png",CC_CALLBACK_0(LevelSelectLayer::goBack,this));
-	Menu* bakcMenu = Menu::create(goBackBtn, NULL);
-	bakcMenu->setPosition(visibleSize.width/2-200,visibleSize.height/2-200);
-	this->addChild(bakcMenu); 
-
 	return true;
 }
 
-void LevelSelectLayer::goBack(){
-	Director::getInstance()->replaceScene(TransitionFade::create(1,StartScene::createScene()));
-}
 
-void LevelSelectLayer::startGame(Ref* pSender){ 
+void LevelSelectLayer::levelSelect(Ref* pSender){ 
 	//add level logic
     auto button = (Sprite *)pSender;
 	GAMEDATA::getInstance()->setCurrentLevel(button->getTag());
+	
+}
+
+void LevelSelectLayer::startGame(){
 	Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
 }

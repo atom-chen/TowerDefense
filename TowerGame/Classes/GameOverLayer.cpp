@@ -1,10 +1,10 @@
 #include "GameOverLayer.h"
-#include "LevelSelectScene.h"
 #include "StartScene.h"
 #include "SimpleAudioEngine.h"
 #include "GameScene.h"
 #include "GameData.h"
 #include "GameState.h"
+#include "StartScene.h"
 
 
 
@@ -38,9 +38,7 @@ bool GameOverLayer::init(){
 
 //goto levle select scene
 void GameOverLayer::goBack(){
-	 
-		Director::getInstance()->replaceScene(TransitionFade::create(1,LevelSelectScene::create()));
-	
+		Director::getInstance()->replaceScene(TransitionFade::create(1,StartScene::createScene()));	
 }
 
 //goto next level

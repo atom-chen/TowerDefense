@@ -45,12 +45,6 @@
     <ClCompile Include="..\Classes\LevelSelectLayer.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\LevelSelectScene.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MenuLayer.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Projectile.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -120,12 +114,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\LevelSelectLayer.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\LevelSelectScene.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MenuLayer.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Projectile.h">
