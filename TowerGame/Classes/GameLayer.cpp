@@ -327,3 +327,9 @@ void GameLayer::clearAllCreep(){
 	}		
 
 }
+
+//Ç¿»¯Ëþ
+void GameLayer::towerLevelUp(){
+	GAMEDATA::getInstance()->doubleTowerFrequency();
+	GAMEDATA::getInstance()->doubleTowerRange();
+}

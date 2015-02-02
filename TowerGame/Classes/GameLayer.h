@@ -27,6 +27,7 @@ public:
 	void usePropBomb();
 	void playerRevive();
 	void clearAllCreep();
+	void towerLevelUp();
 	Point boundLayerPos(Point newPos);
 	CREATE_FUNC(GameLayer);
 };

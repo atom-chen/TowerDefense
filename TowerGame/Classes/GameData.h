@@ -34,8 +34,14 @@ public:
 	//waves 
 	int getCurrentWave();
 	void setCurrentWave(int wave);
-
+	//player life value
 	void initLifeValue(int Level);
+    //change tower proprity
+	void doubleTowerRange();
+	int getTowerRange();
+	void doubleTowerFrequency();
+	float getTowerFrequency();
+
 private:
 	GAMEDATA();
 	void init();
@@ -44,6 +50,8 @@ private:
 	int lifeValue;
 	int Level;
 	int currentWave;
+	//int towerRange;
+	//int towerFrequency;
 	void initPlayerGold(int level);
 
 };

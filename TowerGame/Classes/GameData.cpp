@@ -35,9 +35,27 @@ bool GAMEDATA::getMusicState() {
 	return UserDefault::getInstance()->getBoolForKey("musicState",true);
 }
 
+float GAMEDATA::getTowerFrequency(){
+	return UserDefault::getInstance()->getFloatForKey("towerFrequency",0.8); 
+}
+
+int GAMEDATA::getTowerRange(){
+	return UserDefault::getInstance()->getIntegerForKey("towerRange",50); 
+}
+
+void GAMEDATA::doubleTowerFrequency(){
+	auto fre = getTowerFrequency()/2;
+	UserDefault::getInstance()->setFloatForKey("towerFrequency",fre);
+}
+
+void GAMEDATA::doubleTowerRange(){
+	auto range = getTowerRange()*2;
+	UserDefault::getInstance()->setFloatForKey("towerFrequency",range);
+}
+
 //return current level life value
 void GAMEDATA::initLifeValue(int level){
-  static const int Value[10][2] =
+	static const int Value[10][2] =
 	{
 		{0, 5},
 		{1, 9},
