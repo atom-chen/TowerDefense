@@ -66,7 +66,7 @@ void GameLayer::addWaves()
 {
 	GAMEDATA *m = GAMEDATA::getInstance();
 	Wave *wave = NULL;
-	wave = Wave::create()->initWithCreep(FastRedCreep::creep(), 0.3, 1);
+	wave = Wave::create()->initWithCreep(FastRedCreep::creep(), 0.3, 100);
 	m->waves.pushBack(wave);
 	wave = NULL;
 	wave = Wave::create()->initWithCreep(StrongGreenCreep::creep(),1.0,5);
@@ -299,8 +299,25 @@ Point GameLayer::boundLayerPos(Point newPos)
 	return retval;
 }
 
+
+
+//消灭地图上可见的怪物
 void GameLayer::usePropBomb(){
-	//消灭地图上可见的怪物
+	//clearAllCreep();
+	playerRevive();
+}
+
+
+//玩家复活
+void GameLayer::playerRevive(){
+	//先来一次全屏清怪,确保玩家复活后，不会立即死亡
+	clearAllCreep();
+	GAMEDATA::getInstance()->initLifeValue(GAMEDATA::getInstance()->getCurrentLevel());
+	GAMESTATE::getInstance()->setNeedRefesh(true);
+}
+
+void GameLayer::clearAllCreep(){
+
 	GAMEDATA *m = GAMEDATA::getInstance();
 	Vector<Creep*> targetsToDelete=m->targets;
 	for (Creep *target : targetsToDelete)
@@ -308,4 +325,5 @@ void GameLayer::usePropBomb(){
 		m->targets.eraseObject(target);
 		this->removeChild(target, true);
 	}		
+
 }

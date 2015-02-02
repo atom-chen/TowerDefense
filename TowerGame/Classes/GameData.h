@@ -35,6 +35,7 @@ public:
 	int getCurrentWave();
 	void setCurrentWave(int wave);
 
+	void initLifeValue(int Level);
 private:
 	GAMEDATA();
 	void init();
@@ -43,7 +44,6 @@ private:
 	int lifeValue;
 	int Level;
 	int currentWave;
-	void initLifeValue(int Level);
 	void initPlayerGold(int level);
 
 };

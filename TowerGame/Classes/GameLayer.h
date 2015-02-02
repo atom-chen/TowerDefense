@@ -25,6 +25,8 @@ public:
 	void gameLogic(float dt);
 	void addTarget();
 	void usePropBomb();
+	void playerRevive();
+	void clearAllCreep();
 	Point boundLayerPos(Point newPos);
 	CREATE_FUNC(GameLayer);
 };
