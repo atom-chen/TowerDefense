@@ -46,7 +46,7 @@ void TowerSpeed::finishFiring()
 
 	if (this->target != NULL && this->target->curHp > 0 && this->target->curHp < 100)
 	{
-		this->nextProjectile = Projectile::projectile();
+		this->nextProjectile = Projectile::projectile(BulletType::SPEED);
 		this->nextProjectile->setPosition(this->getPosition());
 
 		this->getParent()->addChild(this->nextProjectile, 1);

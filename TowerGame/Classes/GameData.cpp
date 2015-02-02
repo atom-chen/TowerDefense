@@ -147,4 +147,5 @@ int GAMEDATA::getPriceByImageName(String s){
 	}else if(s.compare("tower_damage.png")==0){
 		return 80;
 	}
+	return 0;
 } 

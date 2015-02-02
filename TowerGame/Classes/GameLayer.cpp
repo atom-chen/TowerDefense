@@ -66,7 +66,7 @@ void GameLayer::addWaves()
 {
 	GAMEDATA *m = GAMEDATA::getInstance();
 	Wave *wave = NULL;
-	wave = Wave::create()->initWithCreep(FastRedCreep::creep(), 0.3, 100);
+	wave = Wave::create()->initWithCreep(FastRedCreep::creep(), 0.3, 2);
 	m->waves.pushBack(wave);
 	wave = NULL;
 	wave = Wave::create()->initWithCreep(StrongGreenCreep::creep(),1.0,5);
@@ -190,14 +190,14 @@ void GameLayer::addTower(Point pos,String imageName)
 			target->setPosition(ccp((towerLoc.x * 32) + 16, this->tileMap->getContentSize().height - (towerLoc.y * 32) - 16));
 			this->addChild(target,1);
 			target->setTag(1);
-			//m->towers.pushBack(target);
+			m->towers.pushBack(target);
 
 		}else{
 			target = TowerDamage::towerDamage();
 			target->setPosition(ccp((towerLoc.x * 32) + 16, this->tileMap->getContentSize().height - (towerLoc.y * 32) - 16));
 			this->addChild(target,1);
 			target->setTag(1);
-			//m->towers.pushBack(target);
+			m->towers.pushBack(target);
 		}
 		auto money=GAMEDATA::getInstance()->getPriceByImageName(imageName);
 		GAMEDATA::getInstance()->setPlayerGold( GAMEDATA::getInstance()->getPlayerGold()-money);
@@ -257,8 +257,12 @@ void GameLayer::update(float dt)
 				projectilesToDelete.pushBack(projectile);
 
 				Creep *creep = target;
-				creep->curHp -= 1;
-
+				if(projectile->getBulletType()==BulletType::SPEED){
+					creep->curHp -= 1;
+				}
+				else if(projectile->getBulletType()==BulletType::DAMAGE){
+					creep->curHp -= 10;
+				}
 				if (creep->curHp <= 0) 
 				{
 					targetsToDelete.pushBack(creep);
