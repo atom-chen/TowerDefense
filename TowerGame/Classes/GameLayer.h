@@ -25,6 +25,7 @@ public:
 	void gameLogic(float dt);
 	void addTarget();
 	void usePropBomb();
+	void showPauseLayer();
 	void playerRevive();
 	void clearAllCreep();
 	void towerLevelUp();

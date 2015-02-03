@@ -8,6 +8,7 @@
 #include <string>
 #include "GameData.h"
 #include "GameState.h"
+#include "GamePauseLayer.h"
 
 
 USING_NS_CC;
@@ -45,6 +46,12 @@ bool GameLayer::init()
 	auto  bombBtn =  Menu::create(bomb,NULL);
 	bombBtn->setPosition(Point(visibleSize.width/2,visibleSize.height/2-200));
 	this->addChild(bombBtn,2);
+
+	//add game pause button
+	auto pause = MenuItemImage::create("pause.png","pause.png",CC_CALLBACK_0(GameLayer::showPauseLayer,this));
+	auto pauseBtn =Menu::create(pause,NULL);
+	pauseBtn->setPosition(Point(visibleSize.width/2-350,visibleSize.height/2+200));
+	this->addChild(pauseBtn,2);
 
 	this->scheduleUpdate();
 	this->schedule(schedule_selector(GameLayer::gameLogic), 1.0f);
@@ -312,21 +319,27 @@ Point GameLayer::boundLayerPos(Point newPos)
 
 
 
-//
+//use prop bomb
 void GameLayer::usePropBomb(){
-	//clearAllCreep();
-	playerRevive();
+	clearAllCreep();
 }
 
+//show pause game layer
+void GameLayer::showPauseLayer(){
+	auto pauseLayer = GamePauseLayer::create();
+	this->addChild(pauseLayer,3);
 
-//
+}
+
+//player revive
 void GameLayer::playerRevive(){
-	//
 	clearAllCreep();
 	GAMEDATA::getInstance()->initLifeValue(GAMEDATA::getInstance()->getCurrentLevel());
 	GAMESTATE::getInstance()->setNeedRefesh(true);
 }
 
+
+//clear all creep in scene
 void GameLayer::clearAllCreep(){
 
 	GAMEDATA *m = GAMEDATA::getInstance();
@@ -339,7 +352,7 @@ void GameLayer::clearAllCreep(){
 
 }
 
-//
+// tower levelup
 void GameLayer::towerLevelUp(){
 	GAMEDATA::getInstance()->doubleTowerFrequency();
 	GAMEDATA::getInstance()->doubleTowerRange();
