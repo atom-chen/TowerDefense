@@ -27,7 +27,7 @@
 			<arguments>
 				<dictionary>
 					<key>?children?</key>
-					<value>?children?=?name?=entry\\\\\\\|\\\|\|?name?=outputEntries\||</value>
+					<value>?children?=?name?=entry\\\\\\\|\\\|?name?=entry\\\\\\\|\\\|\|?name?=outputEntries\||</value>
 				</dictionary>
 				<dictionary>
 					<key>?name?</key>
@@ -108,11 +108,6 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
 	<linkedResources>
-		<link>
-			<name>Classes</name>
-			<type>2</type>
-			<locationURI>$%7BPARENT-1-PROJECT_LOC%7D/Classes</locationURI>
-		</link>
 		<link>
 			<name>cocos2d</name>
 			<type>2</type>
