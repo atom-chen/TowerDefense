@@ -29,7 +29,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Projectile.cpp\
                    ../../Classes/StartScene.cpp\
                    ../../Classes/TopMenu.cpp\
-                   ../../Classes/Tower.cpp\
+                   ../../Classes/TowerBase.cpp\
                    ../../Classes/TowerDamage.cpp\
                    ../../Classes/TowerSpeed.cpp\
                    ../../Classes/Wave.cpp\
