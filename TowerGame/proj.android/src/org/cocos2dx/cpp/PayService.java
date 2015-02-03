@@ -2,10 +2,10 @@ package org.cocos2dx.cpp;
 
 import java.util.Random;
 
-import com.poxiao.pay.star.GamePay;
-import com.poxiao.pay.star.PAY;
-import com.poxiao.pay.star.GamePayCallback;
-import com.poxiao.pay.star.widget.MarkClickOkInterface;
+import com.poxiao.pay.tower.GamePay;
+import com.poxiao.pay.tower.GamePayCallback;
+import com.poxiao.pay.tower.PAY;
+import com.poxiao.pay.tower.widget.MarkClickOkInterface;
 import com.tallbigup.android.cloud.TbuCallback;
 import com.tallbigup.android.cloud.TbuCloud;
 import com.tallbigup.buffett.Buffett;

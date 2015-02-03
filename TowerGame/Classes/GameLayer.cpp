@@ -89,17 +89,21 @@ void GameLayer::addWaypoint()
 	WayPoint *wp = NULL;
 	std::string stringWithFormat = "Waypoint";
 	int wayPointCounter = 0;
-	ValueMap wayPoint;
-	wayPoint = objects->objectNamed(stringWithFormat + std::to_string(wayPointCounter));
-	while (wayPoint.begin()!= wayPoint.end())
+	ValueMap wayPointMap;
+	char countBuf[16] = "";
+    sprintf(countBuf, "%d", wayPointCounter);
+	wayPointMap = objects->objectNamed(stringWithFormat + countBuf);
+	while (wayPointMap.begin()!= wayPointMap.end())
 	{
-		int x = wayPoint.at("x").asInt();
-		int y = wayPoint.at("y").asInt();
+		int x = wayPointMap.at("x").asInt();
+		int y = wayPointMap.at("y").asInt();
 		wp = WayPoint::create();
-		wp->setPosition(ccp(x, y));
+		wp->setPosition(Point(x, y));
 		m->waypoints.pushBack(wp);
 		wayPointCounter++;
-		wayPoint = objects->objectNamed(stringWithFormat + std::to_string(wayPointCounter));
+		char countBuf2[16] = "";
+        sprintf(countBuf2, "%d", wayPointCounter);
+		wayPointMap = objects->objectNamed(stringWithFormat + countBuf2);
 	}
 	wp = NULL;
 }
@@ -305,16 +309,16 @@ Point GameLayer::boundLayerPos(Point newPos)
 
 
 
-//ÏûÃðµØÍ¼ÉÏ¿É¼ûµÄ¹ÖÎï
+//ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½Ï¿É¼ï¿½ï¿½Ä¹ï¿½ï¿½ï¿?
 void GameLayer::usePropBomb(){
 	//clearAllCreep();
 	playerRevive();
 }
 
 
-//Íæ¼Ò¸´»î
+//ï¿½ï¿½Ò¸ï¿½ï¿½ï¿?
 void GameLayer::playerRevive(){
-	//ÏÈÀ´Ò»´ÎÈ«ÆÁÇå¹Ö,È·±£Íæ¼Ò¸´»îºó£¬²»»áÁ¢¼´ËÀÍö
+	//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿?È·ï¿½ï¿½ï¿½ï¿½Ò¸ï¿½ï¿½ï¿½ó£¬²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	clearAllCreep();
 	GAMEDATA::getInstance()->initLifeValue(GAMEDATA::getInstance()->getCurrentLevel());
 	GAMESTATE::getInstance()->setNeedRefesh(true);
@@ -332,7 +336,7 @@ void GameLayer::clearAllCreep(){
 
 }
 
-//Ç¿»¯Ëþ
+//Ç¿ï¿½ï¿½ï¿½ï¿½
 void GameLayer::towerLevelUp(){
 	GAMEDATA::getInstance()->doubleTowerFrequency();
 	GAMEDATA::getInstance()->doubleTowerRange();

@@ -7,7 +7,6 @@ Tower* TowerDamage::towerDamage()
 	tower->sprite = Sprite::create("tower_damage.png");
 	tower->addChild(tower->sprite, 0);
 	tower->range = 200;
-	tower->schedule(schedule_selector(towerLogic), 0.8);
 	return tower;
 }
 
@@ -17,6 +16,7 @@ bool TowerDamage::init()
 	{
 		return false;
 	}
+	this->schedule(schedule_selector(TowerSpeed::towerLogic), 0.2);
 	return true;
 }
 

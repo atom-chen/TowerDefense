@@ -21,7 +21,7 @@ public:
 	Projectile* nextProjectile;
 	static Tower* towerSpeed();
 	bool virtual init();
-	void towerLogic(float dt);
+    void towerLogic(float dt);
 	void finishFiring();
 	void creepMoveFinished(Node* sender);
 };
@@ -32,7 +32,7 @@ public:
 	Projectile* nextProjectile;
 	static Tower* towerDamage();
 	bool virtual init();
-	void towerLogic(float dt);
+    void towerLogic(float dt);
 	void finishFiring();
 	void creepMoveFinished(Node* sender);
 };

@@ -14,18 +14,18 @@ CallAndroidMethod* CallAndroidMethod::getInstance(){
 
 void CallAndroidMethod::showMoreGame(){
 	CCLOG(">>>>>>>>>>>>>>showMoreGame");
-	#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
+	/*#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
 	    CCLOG("android platform");
 		JniMethodInfo methodInfo;
 		bool isHave = JniHelper::getStaticMethodInfo(methodInfo,"org/cocos2dx/cpp/NetWorkService","showMoreGame","()V");
 		if(isHave){
 			JniHelper::getEnv()->CallStaticVoidMethod(methodInfo.classID,methodInfo.methodID);
 		}
-	#endif
+	#endif*/
 }
 
 void CallAndroidMethod::pay(int payPoint){
-	#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	/*#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	    CCLOG("android platform");
 		JniMethodInfo methodInfo;
 		bool isHave = JniHelper::getStaticMethodInfo(methodInfo,"org/cocos2dx/cpp/PayService","pay","(II)V");
@@ -35,24 +35,24 @@ void CallAndroidMethod::pay(int payPoint){
 			jobject jobj;
 			JniHelper::getEnv()->CallStaticVoidMethod(methodInfo.classID,methodInfo.methodID,pay_point,reviveNum);
 		}
-	#endif	
+	#endif	*/
 }
 
 void CallAndroidMethod::startNativeNotify(){
 	CCLOG(">>>>>>>>>>>>>>startNativeNotify");
-	#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
+	/*#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
 	    CCLOG("android platform");
 		JniMethodInfo methodInfo;
 		bool isHave = JniHelper::getStaticMethodInfo(methodInfo,"org/cocos2dx/cpp/NativeNotifyService","startNativeNotify","()V");
 		if(isHave){
 			JniHelper::getEnv()->CallStaticVoidMethod(methodInfo.classID,methodInfo.methodID);
 		}
-	#endif
+	#endif*/
 }
 
 bool CallAndroidMethod::isSignToday(){
 	CCLOG(">>>>>>>>>>>>>>isSignToday");
-	#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
+	/*#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
 	    CCLOG("android platform");
 		JniMethodInfo methodInfo;
 		bool isHave = JniHelper::getStaticMethodInfo(methodInfo,"org/cocos2dx/cpp/SignInService","isSignToday","()Z");
@@ -61,13 +61,13 @@ bool CallAndroidMethod::isSignToday(){
 		}else{
 			return false;
 		}
-	#endif
+	#endif*/
 		return false;
 }
 
 bool CallAndroidMethod::notSignToday(){
 	CCLOG(">>>>>>>>>>>>>>notSignToday");
-	#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	/*#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	    CCLOG("android platform");
 		JniMethodInfo methodInfo;
 		bool isHave = JniHelper::getStaticMethodInfo(methodInfo,"org/cocos2dx/cpp/SignInService","notSignToday","()Z");
@@ -76,13 +76,13 @@ bool CallAndroidMethod::notSignToday(){
 		}else{
 			return false;
 		}
-	#endif
+	#endif*/
 		return false;
 }
 
 int CallAndroidMethod::getCurrentSignDayas(){
 	CCLOG(">>>>>>>>>>>>>>getCurrentSignDayas");
-	#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
+	/*#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
 	    CCLOG("android platform");
 		JniMethodInfo methodInfo;
 		bool isHave = JniHelper::getStaticMethodInfo(methodInfo,"org/cocos2dx/cpp/SignInService","getCurrentSignDays","()I");
@@ -91,18 +91,18 @@ int CallAndroidMethod::getCurrentSignDayas(){
 		}else{
 			return 0;
 		}
-	#endif
+	#endif*/
 		return 0;
 }
 
 void CallAndroidMethod::sign(){
 	CCLOG(">>>>>>>>>>>>>>sign");
-	#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
+	/*#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
 	    CCLOG("android platform");
 		JniMethodInfo methodInfo;
 		bool isHave = JniHelper::getStaticMethodInfo(methodInfo,"org/cocos2dx/cpp/SignInService","sign","()V");
 		if(isHave){
 			JniHelper::getEnv()->CallStaticVoidMethod(methodInfo.classID,methodInfo.methodID);
 		}
-	#endif
+	#endif*/
 }

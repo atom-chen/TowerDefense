@@ -33,7 +33,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/TowerDamage.cpp\
                    ../../Classes/TowerSpeed.cpp\
                    ../../Classes/Wave.cpp\
-                   ../../Classes/WayPoint.cpp\                    
+                   ../../Classes/WayPoint.cpp\
+                   ../../Classes/MenuScenePayHandler.cpp               
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 

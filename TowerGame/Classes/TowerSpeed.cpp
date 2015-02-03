@@ -7,7 +7,6 @@ Tower* TowerSpeed::towerSpeed()
 	tower->sprite = Sprite::create("machinegunturret.png");
 	tower->addChild(tower->sprite, 0);
 	tower->range = 200;
-	tower->schedule(schedule_selector(towerLogic), 0.2);
 	return tower;
 }
 
@@ -17,6 +16,7 @@ bool TowerSpeed::init()
 	{
 		return false;
 	}
+	this->schedule(schedule_selector(TowerSpeed::towerLogic), 0.2);
 	return true;
 }
 

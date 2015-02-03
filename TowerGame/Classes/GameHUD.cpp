@@ -126,7 +126,7 @@ void GameHUD::onTouchMoved(Touch* touch,Event* event)
 
 		Point touchLocationInGameLayer = m_layer->convertTouchToNodeSpace(touch);
 
-		BOOL isBuildable =m_layer->canBuildOnTilePosition(touchLocationInGameLayer);
+		bool isBuildable =m_layer->canBuildOnTilePosition(touchLocationInGameLayer);
 		if (isBuildable) 
 		{
 			selSprite->setOpacity(200);
