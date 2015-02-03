@@ -32,7 +32,6 @@ bool GameLayer::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	//add topMenu to GameLayer
 	auto TopMenu = TopMenu::getInstance();
-	TopMenu->setPosition(visibleSize.width/2-100,visibleSize.height/2-100);
 	this->addChild(TopMenu,2);
 
 	//add waypoint and waves
@@ -42,8 +41,8 @@ bool GameLayer::init()
 	//add prop bomb
 	auto bomb = MenuItemImage::create("bomb.png","bomb.png",CC_CALLBACK_0(GameLayer::usePropBomb,this));
 	auto  bombBtn =  Menu::create(bomb,NULL);
-	bombBtn->setPosition(Point(200,200));
-	this->addChild(bombBtn);
+	bombBtn->setPosition(Point(visibleSize.width/2,visibleSize.height/2-200));
+	this->addChild(bombBtn,2);
 
 	this->scheduleUpdate();
 	this->schedule(schedule_selector(GameLayer::gameLogic), 1.0f);

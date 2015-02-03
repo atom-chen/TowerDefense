@@ -35,7 +35,7 @@ void TopMenu::LoadTopMenu(){
 		ChineseWord("lifevalue") + cocos2d::String::createWithFormat(":%d",data->getLifeValue())->_string,
 		"Verdana-Bold",24
 		);
-	lifeValue->setPosition(visibleSize.width/2,visibleSize.height/2);
+	lifeValue->setPosition(50,visibleSize.height/2-200);
 	this->addChild(lifeValue);
 
 	//add wave value
@@ -43,14 +43,14 @@ void TopMenu::LoadTopMenu(){
 		ChineseWord("waves") + cocos2d::String::createWithFormat(":%d",data->getCurrentWave()+1)->_string+"/"+cocos2d::String::createWithFormat("%d",data->waves.size())->_string,
 		"Verdana-Bold",24
 		);
-	waveValue->setPosition(visibleSize.width/2,visibleSize.height/2+50);
+	waveValue->setPosition(150,visibleSize.height/2-200);
 	this->addChild(waveValue);
 
 	//add player god value
 	playerGold = Label::create(ChineseWord("gold")+cocos2d::String::createWithFormat(":%d",data->getPlayerGold())->_string,
 		"Verdana-Bold",24
 		);
-	playerGold->setPosition(visibleSize.width/2,visibleSize.height/2+100);
+	playerGold->setPosition(250,visibleSize.height/2-200);
 	this->addChild(playerGold);
 }
 void TopMenu::refresh(){

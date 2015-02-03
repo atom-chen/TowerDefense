@@ -25,7 +25,7 @@ bool GameHUD::init(GameLayer* layer)
 	// Draw the background of the game HUD
 	CCTexture2D::setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_RGB565);
 	background = Sprite::create("hud.png");
-	background->setAnchorPoint(ccp(0, 0));
+	background->setAnchorPoint(Point(0, 0));
 	this->addChild(background);
 	CCTexture2D::setDefaultAlphaPixelFormat(kCCTexture2DPixelFormat_Default);
 
