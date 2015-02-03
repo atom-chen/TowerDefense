@@ -36,7 +36,7 @@ public class GameApplication extends Application{
 	}
 	
 	public void init(){		
-		GamePay.getInstance().init(getApplicationContext(), GamePay.MM_POJIE_PAY_TYPE, false, GamePay.SKY_PAY_TYPE, 7005194, 9970, "羊年消星星");
+		GamePay.getInstance().init(getApplicationContext(), GamePay.MM_POJIE_PAY_TYPE, false, GamePay.SKY_PAY_TYPE, 7005194, 9970, "���𺦳�");
 		
 		TbuCloud.initCloud(getApplicationContext(), new TbuCallback() {
 			
@@ -44,7 +44,6 @@ public class GameApplication extends Application{
 			public void result(boolean success) {
 				if(success){
 					if(gameInfo.getData(GameInfoUtil.CREATE_PLAYER_SUCCESS) == 1){
-						Log.i(TAG,"已成功创建用户");
 						playerId = gameInfo.getPlayerId();
 						return;
 					}
