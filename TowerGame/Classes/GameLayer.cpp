@@ -29,8 +29,10 @@ bool GameLayer::init()
 	this->background->setAnchorPoint(ccp(0, 0));
 	this->addChild(tileMap, 0);
 
+	Size visibleSize = Director::getInstance()->getVisibleSize();
 	//add topMenu to GameLayer
 	auto TopMenu = TopMenu::getInstance();
+	TopMenu->setPosition(visibleSize.width/2-100,visibleSize.height/2-100);
 	this->addChild(TopMenu,2);
 
 	//add waypoint and waves
@@ -309,16 +311,16 @@ Point GameLayer::boundLayerPos(Point newPos)
 
 
 
-//�����ͼ�Ͽɼ��Ĺ���?
+//
 void GameLayer::usePropBomb(){
 	//clearAllCreep();
 	playerRevive();
 }
 
 
-//��Ҹ���?
+//
 void GameLayer::playerRevive(){
-	//����һ��ȫ�����?ȷ����Ҹ���󣬲�����������
+	//
 	clearAllCreep();
 	GAMEDATA::getInstance()->initLifeValue(GAMEDATA::getInstance()->getCurrentLevel());
 	GAMESTATE::getInstance()->setNeedRefesh(true);
@@ -336,7 +338,7 @@ void GameLayer::clearAllCreep(){
 
 }
 
-//ǿ����
+//
 void GameLayer::towerLevelUp(){
 	GAMEDATA::getInstance()->doubleTowerFrequency();
 	GAMEDATA::getInstance()->doubleTowerRange();
