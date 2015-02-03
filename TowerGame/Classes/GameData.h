@@ -1,6 +1,6 @@
 #ifndef _GAMEDATA_H_
 #define _GAMEDATA_H_
-#include"Tower.h"
+#include"TowerBase.h"
 #include"Projectile.h"
 #include"Wave.h"
 #include"Creep.h"
@@ -12,7 +12,7 @@ public:
 	Vector<WayPoint*> waypoints;
 	Vector<Creep*> targets;
 	Vector<Wave*> waves;
-	Vector<Tower*> towers;
+	Vector<TowerBase*> towers;
 	Vector<Projectile*> projectiles;
 	void clean();
 	int getPriceByImageName(String s);

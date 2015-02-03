@@ -1,22 +1,17 @@
-#include "Tower.h"
+#include "TowerDamage.h"
 #include "GameData.h"
 
-Tower* TowerDamage::towerDamage()
-{
-	Tower* tower = Tower::create();
-	tower->sprite = Sprite::create("tower_damage.png");
-	tower->addChild(tower->sprite, 0);
-	tower->range = 200;
-	tower->schedule(schedule_selector(towerLogic), 0.2);
-	return tower;
-}
 
 bool TowerDamage::init()
 {
-	if (!Tower::init()) 
+	if (!TowerBase::init()) 
 	{
 		return false;
 	}
+	auto tower= Sprite::create("tower_damage.png");
+    this->addChild(tower);
+	this->range = 200;
+    this->schedule(schedule_selector(TowerDamage::towerLogic), 0.8f);
 	return true;
 }
 
@@ -75,3 +70,4 @@ void TowerDamage::creepMoveFinished(Node* sender)
 
 	m->projectiles.eraseObject((Projectile*)sprite);
 }
+

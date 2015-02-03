@@ -1,5 +1,7 @@
 #include "GameLayer.h"
-#include "Tower.h"
+#include "TowerBase.h"
+#include "TowerSpeed.h"
+#include "TowerDamage.h"
 #include "GameOverScene.h"
 #include "TopMenu.h"
 #include <Vector>
@@ -181,7 +183,7 @@ bool GameLayer::canBuildOnTilePosition(Point pos)
 void GameLayer::addTower(Point pos,String imageName)
 {
 	GAMEDATA *m = GAMEDATA::getInstance();
-	Tower *target = NULL ;
+	TowerBase *target = NULL ;
 	Point towerLoc = this->tileCoordForPosition(pos);
 
 	int tileGid = this->background->tileGIDAt(towerLoc);
@@ -191,14 +193,14 @@ void GameLayer::addTower(Point pos,String imageName)
 	if (1 == type_int) 
 	{   
 		if(imageName.compare("machinegunturret.png")==0){
-			target = TowerSpeed::towerSpeed();
+			target = TowerSpeed::create();
 			target->setPosition(ccp((towerLoc.x * 32) + 16, this->tileMap->getContentSize().height - (towerLoc.y * 32) - 16));
 			this->addChild(target,1);
 			target->setTag(1);
 			m->towers.pushBack(target);
 
 		}else{
-			target = TowerDamage::towerDamage();
+			target = TowerDamage::create();
 			target->setPosition(ccp((towerLoc.x * 32) + 16, this->tileMap->getContentSize().height - (towerLoc.y * 32) - 16));
 			this->addChild(target,1);
 			target->setTag(1);

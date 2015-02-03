@@ -1,14 +1,23 @@
-#include "Tower.h"
+#include "TowerBase.h"
 #include "GameData.h"
 
 
-Creep* Tower::getClosesTarget()
+
+bool TowerBase::init()
+{
+	if (!Sprite::init())
+	{
+		return false;
+	}
+	return true;
+}
+
+Creep* TowerBase::getClosesTarget()
 {
 	Creep *closestCreep = NULL;
 	double maxDistant = 99999;
 
 	GAMEDATA *m = GAMEDATA::getInstance();
-
 	for (Sprite *target : m->targets) 
 	{
 		Creep *creep = (Creep *)target;

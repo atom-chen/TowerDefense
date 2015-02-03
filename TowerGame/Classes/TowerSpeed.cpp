@@ -1,33 +1,27 @@
-#include "Tower.h"
+#include "TowerSpeed.h"
 #include "GameData.h"
 
-Tower* TowerSpeed::towerSpeed()
-{
-	Tower* tower = Tower::create();
-	tower->sprite = Sprite::create("machinegunturret.png");
-	tower->addChild(tower->sprite, 0);
-	tower->range = 200;
-	tower->schedule(schedule_selector(towerLogic), 0.2);
-	return tower;
-}
 
 bool TowerSpeed::init()
 {
-	if (!Tower::init()) 
+	if (!TowerBase::init()) 
 	{
 		return false;
 	}
+    tower= Sprite::create("machinegunturret.png");
+    this->addChild(tower);
+	this->range = 200;
+    this->schedule(schedule_selector(TowerSpeed::towerLogic), 0.8f);
 	return true;
 }
 
 void TowerSpeed::towerLogic(float dt)
 {
-	this->target = this->getClosesTarget();
-
-	if (this->target != NULL) 
+	target = this->getClosesTarget();
+	if (target != NULL) 
 	{
 		// Rotate player to face shooting direction
-		Point shootVector = this->target->getPosition() - this->getPosition();
+		Point shootVector =target->getPosition() - this->getPosition();
 		float shootAngle = ccpToAngle(shootVector);
 		float cocosAngle = CC_RADIANS_TO_DEGREES(-1 * shootAngle);
 
@@ -75,3 +69,4 @@ void TowerSpeed::creepMoveFinished(Node* sender)
 
 	m->projectiles.eraseObject((Projectile*)sprite);
 }
+
