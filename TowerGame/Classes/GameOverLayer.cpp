@@ -41,7 +41,8 @@ void GameOverLayer::goBack(){
 
 //goto next level
 void GameOverLayer::nextLevel(){
-	GAMEDATA::getInstance()->setCurrentLevel(GAMEDATA::getInstance()->getCurrentLevel()+1);
+	int levlenum =  GAMEDATA::getInstance()->getCurrentLevel()+1;
+	GAMEDATA::getInstance()->setCurrentLevel(levlenum);
 	Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
 }
 

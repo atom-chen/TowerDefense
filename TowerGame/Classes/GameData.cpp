@@ -62,10 +62,10 @@ int GAMEDATA::getMaxLevel(){
 }
 
 void GAMEDATA::setNextLevelFile(std::string filename){
-	UserDefault::getInstance()->setStringForKey("LevelNum",filename);
+	UserDefault::getInstance()->setStringForKey("LevelFileName",filename);
 }
 std::string GAMEDATA::getNextLevelFile(){
-	return UserDefault::getInstance()->getStringForKey("LevelNum");
+	return UserDefault::getInstance()->getStringForKey("LevelFileName");
 }
 
 

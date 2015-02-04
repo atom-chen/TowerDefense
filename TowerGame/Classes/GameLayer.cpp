@@ -20,14 +20,17 @@ bool GameLayer::init()
 	{
 		return false;
 	}
-
+	//init data
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	GAMEDATA::getInstance()->initLevelInfo(GAMEDATA::getInstance()->getCurrentLevel());
 	GAMESTATE::getInstance()->reset();
 	GAMEDATA::getInstance()->clean();
+
+	//add bg
 	auto gameBg = Sprite::create("playbg.png");
 	gameBg->setPosition (Point(visibleSize.width / 2 ,visibleSize.height / 2));
 	addChild(gameBg, -1);
+
 	//add HUD and init DataModle
 	auto myGameHUD = GameHUD::create(this);
 	this->addChild(myGameHUD, 1);
