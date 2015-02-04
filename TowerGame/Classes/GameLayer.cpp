@@ -40,13 +40,14 @@ bool GameLayer::init()
 	this->background->setAnchorPoint(ccp(0, 0));
 	this->addChild(tileMap, 0);
 
+	//add waypoint and waves
+	this->addWaypoint();
+	this->addWaves();
+
 	//add topMenu to GameLayer
 	auto TopMenu = TopMenu::getInstance();
 	this->addChild(TopMenu,2);
 
-	//add waypoint and waves
-	this->addWaypoint();
-	this->addWaves();
 
 	//add prop bomb
 	auto bomb = MenuItemImage::create("bomb.png","bomb.png",CC_CALLBACK_0(GameLayer::usePropBomb,this));
