@@ -20,9 +20,14 @@ bool GameLayer::init()
 	{
 		return false;
 	}
+
+	Size visibleSize = Director::getInstance()->getVisibleSize();
 	GAMEDATA::getInstance()->initLevelInfo(GAMEDATA::getInstance()->getCurrentLevel());
 	GAMESTATE::getInstance()->reset();
 	GAMEDATA::getInstance()->clean();
+	auto gameBg = Sprite::create("playbg.png");
+	gameBg->setPosition (Point(visibleSize.width / 2 ,visibleSize.height / 2));
+	addChild(gameBg, -1);
 	//add HUD and init DataModle
 	auto myGameHUD = GameHUD::create(this);
 	this->addChild(myGameHUD, 1);
@@ -32,7 +37,6 @@ bool GameLayer::init()
 	this->background->setAnchorPoint(ccp(0, 0));
 	this->addChild(tileMap, 0);
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
 	//add topMenu to GameLayer
 	auto TopMenu = TopMenu::getInstance();
 	this->addChild(TopMenu,2);
