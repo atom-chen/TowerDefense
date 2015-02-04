@@ -49,17 +49,17 @@ void LoadLevelinfo::readLevelInfo()
 {
 	GAMEDATA *instance = GAMEDATA::getInstance();
     
-	/*auto money =   levelInfo["money"].asFloat();
-	instance->setMoney(money);
+	auto money =   levelInfo["money"].asFloat();
+	instance->setPlayerGold(money);
 	auto currlevel =   levelInfo["currlevel"].asString();
-	instance->setCurrLevelFile(currlevel);
+	//instance->setCurrLevelFile(currlevel);
 	auto nextlevel =   levelInfo["nextlevel"].asString();
 	instance->setNextLevelFile(nextlevel);
     
     ValueMap& groupDict = levelInfo["group"].asValueMap();
 
 	auto groupTotle = groupDict.size();
-	instance->setGroupNum(groupTotle);
+	//instance->setGroupNum(groupTotle);
     
     for (auto iter = groupDict.begin(); iter != groupDict.end(); ++iter)
     {
@@ -72,11 +72,11 @@ void LoadLevelinfo::readLevelInfo()
 		auto type2Hp = group["type2Hp"].asInt();
 		auto type3Hp = group["type3Hp"].asInt();
         
-        GroupEnemy* groupEnemy = GroupEnemy::create()->initGroupEnemy(type1Num, type1Hp, type2Num, type2Hp, type3Num, type3Hp);
-		instance->groupVector.pushBack(groupEnemy);
+      /*  GroupEnemy* groupEnemy = GroupEnemy::create()->initGroupEnemy(type1Num, type1Hp, type2Num, type2Hp, type3Num, type3Hp);
+		instance->groupVector.pushBack(groupEnemy);*/
     }
     
-	auto curMapName =   resources["map"].asString();
+	/*auto curMapName =   resources["map"].asString();
 	instance->setCurMapName(curMapName);
 	auto curBgName =   resources["image"].asString();
 	instance->setCurBgName(curBgName);*/

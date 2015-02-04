@@ -23,7 +23,7 @@ public:
 	void FollowPath(Node* sender);
 	Wave* getCurrentWave();
 	void gameLogic(float dt);
-	void addTarget();
+	void addCreeps();
 	void usePropBomb();
 	void showPauseLayer();
 	void playerRevive();

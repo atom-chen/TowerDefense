@@ -80,10 +80,10 @@ void GameLayer::addWaves()
 {
 	GAMEDATA *m = GAMEDATA::getInstance();
 	Wave *wave = NULL;
-	wave = Wave::create()->initWithCreep(FastRedCreep::creep(), 0.3, 2);
+	wave = Wave::create()->initCreepWave(1, 10, 1, 20, 0, 0);
 	m->waves.pushBack(wave);
 	wave = NULL;
-	wave = Wave::create()->initWithCreep(StrongGreenCreep::creep(),1.0,5);
+	wave = Wave::create()->initCreepWave(1, 10, 1, 20, 0, 0);
 	m->waves.pushBack(wave);
 	wave = NULL;
 }
@@ -122,38 +122,37 @@ void GameLayer::addWaypoint()
 	wp = NULL;
 }
 
-void GameLayer::addTarget()
+void GameLayer::addCreeps()
 {
 
 	GAMEDATA *m = GAMEDATA::getInstance();
 	Wave* wave = this->getCurrentWave();
-	if (wave->totalCreeps <= 0) {
+	auto totalNum = wave->gettotalCreeps();
+	if ( totalNum<= 0) {
 		return;
 	}
-	wave->totalCreeps--;
-
-	Creep *target = NULL;
+     totalNum--;
+	 wave->settotalCreeps(totalNum);
+	Creep *creep = NULL;
 	int random = CCRANDOM_0_1() * 2;
 	if (random == 0)
 	{
-		target = FastRedCreep::creep();
+		creep = FastRedCreep::creep();
 	}
 	else
 	{
-		target = StrongGreenCreep::creep();
+		creep = StrongGreenCreep::creep();
 	}
-
-	WayPoint *waypoint = target->getCurrentWaypoint();
-	target->setPosition(waypoint->getPosition());
-	waypoint = target->getNextWaypoint();
-	this->addChild(target, 1);
-
-	int moveDuration = target->moveDuration;
+	WayPoint *waypoint = creep->getCurrentWaypoint();
+	creep->setPosition(waypoint->getPosition());
+	waypoint = creep->getNextWaypoint();
+	this->addChild(creep, 1);
+	int moveDuration = creep->moveDuration;
 	auto actionMove = CCMoveTo::create(moveDuration, waypoint->getPosition());
 	auto actionMoveDone = CallFuncN::create(this, callfuncN_selector(GameLayer::FollowPath));
-	target->runAction(CCSequence::create(actionMove, actionMoveDone, NULL));
-	target->tag = 1;
-	m->targets.pushBack(target);
+	creep->runAction(CCSequence::create(actionMove, actionMoveDone, NULL));
+	creep->tag = 1;
+	m->targets.pushBack(creep);
 }
 
 Point GameLayer::tileCoordForPosition(Point position)
@@ -235,7 +234,7 @@ void GameLayer::gameLogic(float dt)
 	double now = 0;
 	if (lastTimeTargetAdded == 0 || now - lastTimeTargetAdded >= wave->spawnRate) 
 	{
-		this->addTarget();
+		this->addCreeps();
 		lastTimeTargetAdded = now;
 	}
 	if(m->targets.size()==0&&!GAMESTATE::getInstance()->getGameOver()){
@@ -306,7 +305,7 @@ void GameLayer::update(float dt)
 	}
 
 	if(GAMESTATE::getInstance()->getGameOver()==true){
-		Director::getInstance()->replaceScene(TransitionFade::create(1,GameOverScene::create()));
+		Director::getInstance()->replaceScene(TransitionFade::create(0.5,GameOverScene::create()));
 	}
 }
 

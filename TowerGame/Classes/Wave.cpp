@@ -12,12 +12,16 @@ bool Wave::init()
 	return true;
 }
 
-Wave* Wave::initWithCreep(Creep* creep, double SpawnRate, int TotalCreeps)
+Wave* Wave::initCreepWave(int type1Total, int type1Hp, int type2Total, int type2Hp, int type3Total, int type3Hp )
 {
-	this->creepType = creep;
-	this->spawnRate = SpawnRate;
-	this->totalCreeps = TotalCreeps;
-
-	return this;
+ this->type1Total = type1Total;
+    this->type2Total = type2Total;
+    this->type3Total = type3Total;
+    this->type1Hp = type1Hp;
+    this->type2Hp = type2Hp;
+    this->type3Hp = type3Hp;
+    this->totalCreeps = type1Total + type2Total + type3Total;
+    this->isFinishedAddGroup = false;
+    return this;
 }
 

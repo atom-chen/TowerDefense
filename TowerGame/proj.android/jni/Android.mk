@@ -23,11 +23,14 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/GameLayer.cpp\
                    ../../Classes/GameOverLayer.cpp\
                    ../../Classes/GameOverScene.cpp\
+                   ../../Classes/GamePauseLayer.cpp\
                    ../../Classes/GameScene.cpp\
                    ../../Classes/GameState.cpp\
-                   ../../Classes/LevelSelectLayer.cpp\
+                   ../../Classes/LevelScene.cpp\
+                   ../../Classes/LevelLayer.cpp\
+                   ../../Classes/LevelSelectPage.cpp\
+                   ../../Classes/LoadLevelInfo.cpp\
                    ../../Classes/Projectile.cpp\
-                   ../../Classes/StartScene.cpp\
                    ../../Classes/TopMenu.cpp\
                    ../../Classes/TowerBase.cpp\
                    ../../Classes/TowerDamage.cpp\

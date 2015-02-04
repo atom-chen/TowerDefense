@@ -36,7 +36,7 @@ bool GameOverLayer::init(){
 
 //goto levle select scene
 void GameOverLayer::goBack(){
-	Director::getInstance()->replaceScene(TransitionFade::create(1,LevelScene::getInstance()));	
+	Director::getInstance()->replaceScene(TransitionFade::create(1,LevelScene::create()));	
 }
 
 //goto next level
