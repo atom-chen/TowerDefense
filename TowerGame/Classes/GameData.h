@@ -29,8 +29,14 @@ public:
 	void setPlayerGold(int gold);
 	int getPlayerGold();
 	//level number
+	int getMaxLevel();
+	void setMaxLevel(int level);
 	int getCurrentLevel();
 	void setCurrentLevel(int level);
+
+    //
+	 void setNextLevelFile(std::string filename);
+	 std::string getNextLevelFile();
 	//waves 
 	int getCurrentWave();
 	void setCurrentWave(int wave);

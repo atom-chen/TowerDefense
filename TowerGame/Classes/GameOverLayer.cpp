@@ -1,11 +1,9 @@
 #include "GameOverLayer.h"
-#include "StartScene.h"
 #include "SimpleAudioEngine.h"
 #include "GameScene.h"
 #include "GameData.h"
 #include "GameState.h"
-#include "StartScene.h"
-
+#include "LevelScene.h"
 
 
 using namespace cocos2d;
@@ -38,7 +36,7 @@ bool GameOverLayer::init(){
 
 //goto levle select scene
 void GameOverLayer::goBack(){
-		Director::getInstance()->replaceScene(TransitionFade::create(1,StartScene::createScene()));	
+	Director::getInstance()->replaceScene(TransitionFade::create(1,LevelScene::getInstance()));	
 }
 
 //goto next level

@@ -53,6 +53,22 @@ void GAMEDATA::doubleTowerRange(){
 	UserDefault::getInstance()->setFloatForKey("towerFrequency",range);
 }
 
+void GAMEDATA::setMaxLevel(int lev){
+	UserDefault::getInstance()->setIntegerForKey("LevelNum",lev);
+}
+
+int GAMEDATA::getMaxLevel(){
+	return UserDefault::getInstance()->getIntegerForKey("LevelNum",0);
+}
+
+void GAMEDATA::setNextLevelFile(std::string filename){
+	UserDefault::getInstance()->setStringForKey("LevelNum",filename);
+}
+std::string GAMEDATA::getNextLevelFile(){
+	return UserDefault::getInstance()->getStringForKey("LevelNum");
+}
+
+
 //return current level life value
 void GAMEDATA::initLifeValue(int level){
 	static const int Value[10][2] =
@@ -110,13 +126,14 @@ void GAMEDATA::setPlayerGold(int gold){
 	playerGold=gold;
 }
 
+
 void GAMEDATA::setCurrentLevel(int lev){
-	Level =lev;
-}
+	Level =lev;}
 
 int GAMEDATA::getCurrentLevel(){
 	return Level;
 }
+
 
 void GAMEDATA::setCurrentWave(int wave){
 	currentWave =wave;

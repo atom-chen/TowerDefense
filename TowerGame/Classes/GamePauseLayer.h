@@ -14,4 +14,4 @@ public:
 	void getMusicState(CCObject* pSender);
 };
 
-#endif // !_GAMEPAUSELAYER_H_
+#endif 
