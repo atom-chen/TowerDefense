@@ -128,7 +128,11 @@ void GAMEDATA::setPlayerGold(int gold){
 
 
 void GAMEDATA::setCurrentLevel(int lev){
-	Level =lev;}
+	Level =lev;
+	if(Level>GAMEDATA::getMaxLevel()){
+	    GAMEDATA::setMaxLevel(Level);
+	}
+}
 
 int GAMEDATA::getCurrentLevel(){
 	return Level;

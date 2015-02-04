@@ -12,5 +12,6 @@ public:
 	void retry();
     void nextLevel();
 	void goBack();
+	void saveGameData();
 };
 #endif
