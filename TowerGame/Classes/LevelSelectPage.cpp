@@ -1,7 +1,7 @@
 #include "LevelSelectPage.h"
+#include "LevelInfoScene.h"
+
 #include "SimpleAudioEngine.h" 
-#include "GameData.h"
-#include "GameScene.h"
 using namespace CocosDenshion; 
 
 #define LEVEL_ROW (3)
@@ -54,7 +54,8 @@ bool LevelSelectPage::initLevelPage(const std::string& bgName, int level)
             item->setPosition(Point(width, height));
             item->setTag(row * LEVEL_ROW + col + level * LEVEL_ROW * LEVEL_COL);
             menuItemVector.pushBack( item );
-			auto levelNum = GAMEDATA::getInstance()->getMaxLevel();       
+            auto levelNum = UserDefault::getInstance()->getIntegerForKey("levelNum");
+            
             if(levelNum < row * LEVEL_ROW + col + level * LEVEL_ROW * LEVEL_COL)
             {
                 item->setEnabled(false);
@@ -70,11 +71,18 @@ bool LevelSelectPage::initLevelPage(const std::string& bgName, int level)
 
 void LevelSelectPage::menuStartCallback(Ref* pSender)
 {
-    auto button = (Sprite *)pSender;  
+    auto button = (Sprite *)pSender;
+    SimpleAudioEngine::getInstance()->playEffect(FileUtils::getInstance()->fullPathForFilename("sound/button.wav").c_str(), false);
+    
     char buffer[20] = { 0 };
     sprintf(buffer, "levelInfo_%d.plist", button->getTag());
     std::string strName =  buffer;
-	GAMEDATA::getInstance()->setCurrentLevel(button->getTag());
-	GAMEDATA::getInstance()->setNextLevelFile(strName); 
-	Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
+    UserDefault::getInstance()->setStringForKey("nextLevelFile", strName);
+    
+    Scene *scene = Scene::create();
+    auto layer = LevelInfoScene::create();
+    scene->addChild(layer);
+    auto sence = TransitionFade::create(0.5, scene);
+    
+    Director::getInstance()->replaceScene(sence);
 }

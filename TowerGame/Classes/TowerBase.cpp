@@ -1,7 +1,14 @@
 #include "TowerBase.h"
 #include "GameData.h"
 
-
+TowerBase::TowerBase()
+:scope(0)
+,towerValue(0)
+,lethality(0)
+,rate(0)
+,nearestEnemy(NULL)
+{
+}
 
 bool TowerBase::init()
 {
@@ -9,26 +16,34 @@ bool TowerBase::init()
 	{
 		return false;
 	}
+    scheduleUpdate();
 	return true;
 }
 
-Creep* TowerBase::getClosesTarget()
+
+void TowerBase::checkNearestEnemy()
 {
-	Creep *closestCreep = NULL;
-	double maxDistant = 99999;
-
-	GAMEDATA *m = GAMEDATA::getInstance();
-	for (Sprite *target : m->targets) 
+    GAMEDATA *instance = GAMEDATA::getInstance();
+    auto enemyVector = instance->enemyVector;
+    
+	auto currMinDistant = this->scope;
+    
+    EnemyBase *enemyTemp = NULL;
+	for(int i = 0; i < enemyVector.size(); i++)
 	{
-		Creep *creep = (Creep *)target;
-		double curDistance = ccpDistance(this->getPosition(), creep->getPosition());
-
-		if (curDistance < maxDistant) {
-			closestCreep = creep;
-			maxDistant = curDistance;
+		auto enemy = enemyVector.at(i);
+		double distance = this->getPosition().getDistance(enemy->sprite->getPosition());
+        
+		if (distance < currMinDistant) {
+			currMinDistant = distance;
+            enemyTemp = enemy;
 		}
 	}
-	if (maxDistant < this->range)
-		return closestCreep;
-	return NULL;
+    nearestEnemy = enemyTemp;
 }
+
+
+
+
+
+

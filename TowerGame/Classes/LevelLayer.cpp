@@ -1,3 +1,11 @@
+//
+//  LevelScene.cpp
+//  thiefTD
+//
+//  Created by cocos2d-x on 14-5-7.
+//
+//
+
 #include "LevelScene.h"
 #include "LevelLayer.h"
 USING_NS_CC;
@@ -34,14 +42,14 @@ bool LevelLayer::init()
   
 void LevelLayer::goToCurrNode()
 {
-	this->runAction(MoveTo::create(0.4f, Point(-curPageNode * WINDOW_WIDTH, 0)));
+	this->runAction(MoveTo::create(0.4f, Point::Vec2(-curPageNode * WINDOW_WIDTH, 0)));
 }
 
 void LevelLayer::addNode(Node *level)
 {
     if (level)
     {
-        level->setContentSize(Size(WINDOW_WIDTH, WINDOW_HEIGHT));
+        level->setContentSize(Size::Size(WINDOW_WIDTH, WINDOW_HEIGHT));
         level->setPosition(Point(WINDOW_WIDTH * pageNode, 0));
         this->addChild(level);
         pageNode++;
@@ -59,7 +67,7 @@ void LevelLayer::onTouchMoved(Touch *touch, Event  *event)
 {
     Point touchPoint = touch->getLocation();
     auto currX = this->getPositionX() + touchPoint.x - touchCurPoint.x;
-	Point posPoint = Point(currX, getPositionY());
+	Point posPoint = Point::Vec2(currX, getPositionY());
     auto dis= fabsf(touchPoint.x - touchCurPoint.x);
     if (dis >= SHORTEST_SLIDE_LENGTH ) {
         setPosition(posPoint);
@@ -71,7 +79,7 @@ void LevelLayer::onTouchEnded(Touch *touch, Event  *event)
 {
     touchUpPoint = touch->getLocation();
     auto dis= touchUpPoint.getDistance(touchDownPoint);
-    auto sprite1 =Sprite::create("page_mark1.png");
+    auto sprite1 =Sprite::createWithSpriteFrameName("page_mark1.png");
     auto width = sprite1->getContentSize().width;
     if (dis >= SHORTEST_SLIDE_LENGTH )
     {

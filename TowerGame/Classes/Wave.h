@@ -1,6 +1,5 @@
 #pragma  once
 #include "cocos2d.h"
-#include "Creep.h"
 
 USING_NS_CC;
 
@@ -9,7 +8,6 @@ class Wave :public Node
 public:
 	Point position;
 	double spawnRate;
-	Creep* creepType;
 	virtual bool init();
 	Wave* initCreepWave(int type1Total, int type1Hp, int type2Total, int type2Hp, int type3Total, int type3Hp );
 	CREATE_FUNC(Wave);

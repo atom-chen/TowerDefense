@@ -1,5 +1,5 @@
-#ifndef _LEVELSELECTPAGE__
-#define _LEVELSELECTPAGE__
+#ifndef __thiefTD__LevelSelectPage__
+#define __thiefTD__LevelSelectPage__
   
 #include <iostream>  
 #include "cocos2d.h"  
@@ -15,4 +15,4 @@ public:
     void menuStartCallback(Ref* pSender);
 };
 
-#endif
+#endif /* defined(__thiefTD__LevelSelectPage__) */

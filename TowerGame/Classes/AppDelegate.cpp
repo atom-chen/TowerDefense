@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "LevelScene.h"
+#include "LoadingResScene.h"
 
 USING_NS_CC;
 
@@ -7,39 +7,41 @@ AppDelegate::AppDelegate() {
 
 }
 
-AppDelegate::~AppDelegate() 
+AppDelegate::~AppDelegate()
 {
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
 	// initialize director
 	auto director = Director::getInstance();
-	auto eglView = director->getOpenGLView();
-	if(!eglView) {
-		eglView = GLViewImpl::create("Tower");
-		director->setOpenGLView(eglView);
+	auto glview = director->getOpenGLView();
+	if(!glview) {
+		glview = GLViewImpl::create("TD Game");
+		director->setOpenGLView(glview);
 	}
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	glview->setDesignResolutionSize(480.0f, 320.0f, ResolutionPolicy::FIXED_HEIGHT);
+	director->setContentScaleFactor(864.0f / 320.0f);
+#endif
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	if(visibleSize.height/visibleSize.width > 800/480){
+		glview->setDesignResolutionSize(800, 480, ResolutionPolicy::EXACT_FIT);
+	}
+	else{
+		glview->setDesignResolutionSize(800, 480, ResolutionPolicy::NO_BORDER);
+	}
+#endif
 	// turn on display FPS
 	director->setDisplayStats(false);
 
 	// set FPS. the default value is 1.0/60 if you don't call this
 	director->setAnimationInterval(1.0 / 60);
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	eglView->setDesignResolutionSize(800, 480, kResolutionExactFit);
-#endif
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	if(visibleSize.width/visibleSize.height > 800/480){
-		eglView->setDesignResolutionSize(800, 480, ResolutionPolicy::EXACT_FIT);
-	}
-	else{
-		eglView->setDesignResolutionSize(800, 480, ResolutionPolicy::NO_BORDER);
-	}
-#endif
 	// create a scene. it's an autorelease object
-	auto scene = LevelScene::create();
+	auto scene = LoadingResScene::createScene();
+
 	// run
 	director->runWithScene(scene);
 

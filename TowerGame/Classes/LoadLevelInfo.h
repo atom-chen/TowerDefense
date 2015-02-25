@@ -1,5 +1,5 @@
-#ifndef _LOADLEVELINFO_H_
-#define _LOADLEVELINFO_H_
+#ifndef __LOADLEVELINFO_H__
+#define __LOADLEVELINFO_H__
 
 #include "cocos2d.h"
 using namespace cocos2d;

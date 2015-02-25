@@ -1,6 +1,5 @@
 #include "GameOverLayer.h"
 #include "SimpleAudioEngine.h"
-#include "GameScene.h"
 #include "GameData.h"
 #include "GameState.h"
 #include "LevelScene.h"
@@ -41,12 +40,10 @@ void GameOverLayer::goBack(){
 
 //goto next level
 void GameOverLayer::nextLevel(){
-	int levlenum =  GAMEDATA::getInstance()->getCurrentLevel()+1;
-	GAMEDATA::getInstance()->setCurrentLevel(levlenum);
-	Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
+	//Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
 }
 
 //try this current again
 void GameOverLayer::retry(){
-	Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
+	//Director::getInstance()->replaceScene(TransitionFade::create(1,GameScene::create()));
 }

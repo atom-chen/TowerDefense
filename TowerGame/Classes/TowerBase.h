@@ -1,21 +1,31 @@
-#ifndef _TOWER_H_
-#define _TOWER_H_
-#include "cocos2d.h"
-#include "Creep.h"
-#include "Projectile.h"
+#ifndef __TOWERBASE_H__
+#define __TOWERBASE_H__
 
-class TowerBase: public Sprite 
+#include <iostream>
+#include "cocos2d.h"
+#include "EnemyBase.h"
+
+
+USING_NS_CC;
+
+class TowerBase: public Sprite
 {
 public:
+    TowerBase();
+    
     virtual bool init();
-	CREATE_FUNC(TowerBase);
-	int range;
-	Creep* target;
-	Creep* getClosesTarget();	
-
+    CREATE_FUNC(TowerBase);
+    
+    void checkNearestEnemy();
+    
+    CC_SYNTHESIZE(int, scope, Scope);  // 塔的视线范围
+    CC_SYNTHESIZE(int, lethality, Lethality);   // 杀伤力
+    CC_SYNTHESIZE(int, towerValue, TowerValue);  //
+    CC_SYNTHESIZE(float, rate, Rate);  //
+    
 protected:
-	 Creep* nearestEnemy;  
-
+    EnemyBase* nearestEnemy;    // 塔子视野内最近的敌人
 };
 
-#endif
+
+#endif 

@@ -4,7 +4,6 @@
 #include "SimpleAudioEngine.h"
 #include "GameData.h"
 #include "GameState.h"
-#include "GameLayer.h"
 
 using namespace cocos2d;
 

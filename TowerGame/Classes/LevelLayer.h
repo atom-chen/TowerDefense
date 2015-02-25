@@ -1,5 +1,13 @@
-#ifndef _LEVELLAYER_H_
-#define _LEVELLAYER_H_
+//
+//  LevelLayer.h
+//  thiefTD
+//
+//  Created by cocos2d-x on 14-5-17.
+//
+//
+
+#ifndef __thiefTD__LevelLayer__
+#define __thiefTD__LevelLayer__
 
 #include <iostream>
 #include "cocos2d.h"  
@@ -36,4 +44,4 @@ public:
     void addNode(Node *level);
 };
   
-#endif
+#endif /* defined(__thiefTD__LevelLayer__) */

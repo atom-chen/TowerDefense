@@ -1,52 +1,37 @@
 #ifndef _GAMEDATA_H_
 #define _GAMEDATA_H_
 #include"TowerBase.h"
-#include"Projectile.h"
 #include"Wave.h"
-#include"Creep.h"
 #include"WayPoint.h"
+#include "GroupEnemy.h"
 
 class GAMEDATA{
 public:
 	static GAMEDATA* getInstance();
-	Vector<WayPoint*> waypoints;
-	Vector<Creep*> targets;
-	Vector<Wave*> waves;
-	Vector<TowerBase*> towers;
-	Vector<Projectile*> projectiles;
-	void clean();
+	 Vector<EnemyBase*> enemyVector;
+    Vector<Sprite*> bulletVector;
+    Vector<TowerBase*> towerVector;
+    Vector<GroupEnemy*> groupVector;
+	void clear();
 	int getPriceByImageName(String s);
 	void setSoundState(bool state);
 	bool getSoundState();
 	void setMusicState(bool state);
 	bool getMusicState();
-	//init level info
-	void initLevelInfo(int level);
-	//life value
-	void setLifeValue(int value);
-	int getLifeValue();
-	//player gold
-	void setPlayerGold(int gold);
-	int getPlayerGold();
-	//level number
-	int getMaxLevel();
-	void setMaxLevel(int level);
-	int getCurrentLevel();
-	void setCurrentLevel(int level);
 
-    //
-	 void setNextLevelFile(std::string filename);
-	 std::string getNextLevelFile();
-	//waves 
-	int getCurrentWave();
-	void setCurrentWave(int wave);
-	//player life value
-	void initLifeValue(int Level);
     //change tower proprity
 	void doubleTowerRange();
 	int getTowerRange();
 	void doubleTowerFrequency();
 	float getTowerFrequency();
+
+	CC_SYNTHESIZE(std::string, curBgName, CurBgName);
+    CC_SYNTHESIZE(std::string, curMapName, CurMapName);
+	CC_SYNTHESIZE(int, money, Money);
+	CC_SYNTHESIZE(int, groupNum, GroupNum);
+	CC_SYNTHESIZE(std::string, currLevelFile, CurrLevelFile);
+	CC_SYNTHESIZE(std::string, nextLevelFile, NextLevelFile);
+	CC_SYNTHESIZE(bool, isFinishedAddGroup, IsFinishedAddGroup);
 
 private:
 	GAMEDATA();
@@ -56,8 +41,6 @@ private:
 	int lifeValue;
 	int Level;
 	int currentWave;
-	//int towerRange;
-	//int towerFrequency;
 	void initPlayerGold(int level);
 
 };
