@@ -5,33 +5,10 @@ bool Thief::init()
 {
     setRunSpeed(25);
     setVaule(10);
-	sprite = Sprite::create("orc.c3b");
+	sprite = Sprite::create();
     this->addChild(sprite);
 	sprite->setScale(2.0);
-	sprite->setAnchorPoint(Vec2(0,0));
-	
-	auto animation = Animation3D::create("orc.c3b");
-    if (animation)
-    {
-        auto animate = Animate3D::create(animation);
-        bool inverse = (std::rand() % 3 == 0);
-
-        int rand2 = std::rand();
-        float speed = 1.0f;
-        if(rand2 % 3 == 1)
-        {
-            speed = animate->getSpeed() + CCRANDOM_0_1();
-        }
-        else if(rand2 % 3 == 2)
-        {
-            speed = animate->getSpeed() - 0.5 * CCRANDOM_0_1();
-        }
-        animate->setSpeed(inverse ? -speed : speed);
-
-        sprite->runAction(RepeatForever::create(animate));
-    }
-	
-    
+	sprite->setAnchorPoint(Vec2(0,0));	   
     createAndSetHpBar();
 	schedule(schedule_selector(EnemyBase::changeDirection), 0);
 	return true;
@@ -88,7 +65,7 @@ bool Pirate::init()
 
     setRunSpeed(50);
     setVaule(20);
-    sprite = Sprite::create("orc.c3b");
+    sprite = Sprite::create();
 	sprite->setAnchorPoint(Vec2(0,0));
 	sprite->setScale(2.0);
     this->addChild(sprite);
@@ -157,7 +134,7 @@ bool Bandit::init()
 	}
     setRunSpeed(70);
     setVaule(30);
-    sprite = Sprite::create("");
+    sprite = Sprite::create();
 	sprite->setColor(Color3B(255,255,0));
 	sprite->setAnchorPoint(Vec2(0,0));
     this->addChild(sprite);

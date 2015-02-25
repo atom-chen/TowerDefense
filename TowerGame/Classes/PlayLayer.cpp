@@ -211,7 +211,7 @@ GroupEnemy* PlayLayer::nextGroup()
 
 void PlayLayer::addEnemy()
 {
-    /*GAMEDATA *instance = GAMEDATA::getInstance();
+    GAMEDATA *instance = GAMEDATA::getInstance();
 
 	GroupEnemy* groupEnemy = this->currentGroup();
 	if(groupEnemy == NULL)
@@ -247,7 +247,7 @@ void PlayLayer::addEnemy()
     
 	this->addChild(enemy, 10);
 	this->addChild(enemy->getHpBarBg(),1000);
-    instance->enemyVector.pushBack(enemy);*/
+    instance->enemyVector.pushBack(enemy);
 }
 
 void PlayLayer::logic(float dt)
